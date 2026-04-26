@@ -133,6 +133,16 @@ argument,
 .BR openat2 ()
 returns an error if unknown or conflicting flags are specified in
 .IR how.flags .
+.IP
+.BR openat2 ()
+also supports the below additional flags:
+.RS
+.TP
+.BR OPENAT2_REGULAR " (since Linux 7.2)"
+Open the file specified by
+.I path
+only if it is a regular file.
+.RE
 .TP
 .I mode
 This field specifies the
@@ -471,6 +481,12 @@ and an escape from the root during path resolution was detected.
 contains
 .BR RESOLVE_NO_XDEV ,
 and a path component crosses a mount point.
+.TP
+.B EFTYPE
+.I how.flags
+contains
+.B OPENAT2_REGULAR
+flag and the path is not a regular file.
 .SH STANDARDS
 Linux.
 .SH HISTORY
