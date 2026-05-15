@@ -135,6 +135,36 @@ whose implementations are safe and return the right error codes
 .BR FICLONERANGE ,
 .BR FIDEDUPERANGE )
 .RE
+.TP
+.BR LANDLOCK_ACCESS_FS_RESOLVE_UNIX "  (since Landlock ABI version 9)"
+Look up pathname UNIX
+domain sockets
+.RB ( unix (7)).
+On UNIX domain sockets,
+this restricts both calls to
+.BR connect (2)
+and
+.BR sendmsg (2)
+with an explicit recipient address.
+.IP
+This access right applies only to connections to UNIX server sockets
+which were created outside the newly created Landlock domain
+(e.g., from within a parent domain or from an unrestricted process).
+Newly created UNIX servers
+within the same Landlock domain
+continue to be accessible.
+In this regard,
+.B LANDLOCK_ACCESS_FS_RESOLVE_UNIX
+has the same semantics as the
+.BI LANDLOCK_SCOPE_ *
+flags.
+.IP
+If a resolution attempt is denied,
+the operation returns an
+.B EACCES
+error,
+in line with other filesystem access rights
+(but different to denials for abstract UNIX domain sockets).
 .P
 Whether an opened file can be truncated with
 .BR ftruncate (2)
@@ -468,6 +498,8 @@ _	_	_
 \^	\^	LANDLOCK_RESTRICT_SELF_LOG_SUBDOMAINS_OFF
 _	_	_
 8	7.0	LANDLOCK_RESTRICT_SELF_TSYNC
+_	_	_
+9	7.1	LANDLOCK_ACCESS_FS_RESOLVE_UNIX
 .TE
 .P
 Users should use the Landlock ABI version rather than the kernel version
@@ -553,7 +585,8 @@ attr.handled_access_fs =
         LANDLOCK_ACCESS_FS_MAKE_SYM |
         LANDLOCK_ACCESS_FS_REFER |
         LANDLOCK_ACCESS_FS_TRUNCATE |
-        LANDLOCK_ACCESS_FS_IOCTL_DEV;
+        LANDLOCK_ACCESS_FS_IOCTL_DEV |
+        LANDLOCK_ACCESS_FS_RESOLVE_UNIX;
 .EE
 .in
 .P
@@ -568,14 +601,15 @@ and only use the available subset of access rights:
  * numbers hardcoded to keep the example short.
  */
 __u64 landlock_fs_access_rights[] = {
-    (LANDLOCK_ACCESS_FS_MAKE_SYM  << 1) \- 1,  /* v1                  */
-    (LANDLOCK_ACCESS_FS_REFER     << 1) \- 1,  /* v2: add "refer"     */
-    (LANDLOCK_ACCESS_FS_TRUNCATE  << 1) \- 1,  /* v3: add "truncate"  */
-    (LANDLOCK_ACCESS_FS_TRUNCATE  << 1) \- 1,  /* v4: TCP support     */
-    (LANDLOCK_ACCESS_FS_IOCTL_DEV << 1) \- 1,  /* v5: add "ioctl_dev" */
-    (LANDLOCK_ACCESS_FS_IOCTL_DEV << 1) \- 1,  /* v6: same            */
-    (LANDLOCK_ACCESS_FS_IOCTL_DEV << 1) \- 1,  /* v7: same            */
-    (LANDLOCK_ACCESS_FS_IOCTL_DEV << 1) \- 1,  /* v8: same            */
+    (LANDLOCK_ACCESS_FS_MAKE_SYM     << 1) \- 1,  // v1
+    (LANDLOCK_ACCESS_FS_REFER        << 1) \- 1,  // v2: add "refer"
+    (LANDLOCK_ACCESS_FS_TRUNCATE     << 1) \- 1,  // v3: add "truncate"
+    (LANDLOCK_ACCESS_FS_TRUNCATE     << 1) \- 1,  // v4: TCP support
+    (LANDLOCK_ACCESS_FS_IOCTL_DEV    << 1) \- 1,  // v5: add "ioctl_dev"
+    (LANDLOCK_ACCESS_FS_IOCTL_DEV    << 1) \- 1,  // v6: same
+    (LANDLOCK_ACCESS_FS_IOCTL_DEV    << 1) \- 1,  // v7: same
+    (LANDLOCK_ACCESS_FS_IOCTL_DEV    << 1) \- 1,  // v8: same
+    (LANDLOCK_ACCESS_FS_RESOLVE_UNIX << 1) \- 1,  // v9: add "resolve_unix"
 };
 \&
 int abi = landlock_create_ruleset(NULL, 0,
@@ -588,7 +622,7 @@ if (abi == \-1) {
     perror("Unable to use Landlock");
     return;  /* Graceful fallback: Do nothing.  */
 }
-abi = MIN(abi, 8);
+abi = MIN(abi, 9);
 \&
 /* Only use the available rights in the ruleset.  */
 attr.handled_access_fs &= landlock_fs_access_rights[abi \- 1];
