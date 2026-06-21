@@ -15,7 +15,7 @@ Standard C library
 .BR "#include <netinet/in.h>" "  /* Definition of " IP* " constants */"
 .B #include <sys/socket.h>
 .P
-.BI int\~setsockopt(int\~ sockfd ,\~IPPROTO_IP,\~IPV6_V6ONLY,
+.BI int\~setsockopt(int\~ sockfd ,\~IPPROTO_IPV6,\~IPV6_V6ONLY,
 .BI "               const\~int\~*" enable ,\~sizeof(int));
 .fi
 .SH DESCRIPTION
