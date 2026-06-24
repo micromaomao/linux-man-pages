@@ -489,7 +489,7 @@ also had the effect of implicitly defining
 and
 .BR _SVID_SOURCE .
 .TP
-.B _REENTRANT
+.BR _REENTRANT "  [[deprecated]]"
 Historically, on various C libraries
 it was necessary to define this macro in all
 multithreaded code.
@@ -531,8 +531,8 @@ has no effect.
 This macro is automatically defined if one compiles with
 .IR cc\~\-pthread .
 .TP
-.B _THREAD_SAFE
-Synonym for the (deprecated)
+.BR _THREAD_SAFE "  [[deprecated]]"
+Synonym for
 .BR _REENTRANT ,
 provided for compatibility with some other implementations.
 .TP
