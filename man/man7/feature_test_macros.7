@@ -241,62 +241,24 @@ Equivalent to
 .IR -D_POSIX_C_SOURCE=1 .
 .TP
 .B _XOPEN_SOURCE
-Defining this macro causes header files to expose definitions as follows:
-.RS
-.IP \[bu] 3
-Defining with any value exposes
-definitions conforming to POSIX.1, POSIX.2, and XPG4.
-.IP \[bu]
-The value 500 or greater additionally exposes
-definitions for SUSv2 (UNIX 98).
-.IP \[bu]
-(Since glibc 2.2) The value 600 or greater additionally exposes
-definitions for SUSv3 (UNIX 03; i.e., the POSIX.1-2001 base specification
-plus the XSI extension) and C99 definitions.
-.IP \[bu]
-(Since glibc 2.10) The value 700 or greater additionally exposes
-definitions for SUSv4 (i.e., the POSIX.1-2008 base specification
-plus the XSI extension).
-.RE
-.IP
-If
-.B __STRICT_ANSI__
-is not defined, or
-.B _XOPEN_SOURCE
-is defined with a value greater than or equal to 500
-.I and
-neither
-.B _POSIX_SOURCE
-nor
-.B _POSIX_C_SOURCE
-is explicitly defined, then
-the following macros are implicitly defined:
-.RS
-.IP \[bu] 3
-.B _POSIX_SOURCE
-is defined with the value 1.
-.IP \[bu]
-.B _POSIX_C_SOURCE
-is defined, according to the value of
-.BR _XOPEN_SOURCE :
+Defining this macro causes header files to expose definitions
+conforming to the following standards,
+depending on the value.
 .RS
 .TP
-.BR _XOPEN_SOURCE " < 500"
-.B _POSIX_C_SOURCE
-is defined with the value 2.
+.B 1
+POSIX.1, POSIX.2, XPG4.
 .TP
-.RB "500 <= " _XOPEN_SOURCE " < 600"
-.B _POSIX_C_SOURCE
-is defined with the value 199506L.
+.B 500
+SUSv2 (Issue 5).
 .TP
-.RB "600 <= " _XOPEN_SOURCE " < 700"
-.B _POSIX_C_SOURCE
-is defined with the value 200112L.
+.BR 600 "  (since glibc 2.2)"
+SUSv3 (Issue 6).
+SUSv3 is POSIX.1-2001 plus the XSI extension.
 .TP
-.RB "700 <= " _XOPEN_SOURCE " (since glibc 2.10)"
-.B _POSIX_C_SOURCE
-is defined with the value 200809L.
-.RE
+.BR 700 "  (since glibc 2.10)"
+SUSv4 (Issue 7).
+SUSv4 is POSIX.1-2008 plus the XSI extension.
 .RE
 .TP
 .BR _XOPEN_SOURCE_EXTENDED "  [[deprecated]]"
