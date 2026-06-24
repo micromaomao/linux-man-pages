@@ -209,33 +209,31 @@ or
 flag.
 .TP
 .B _POSIX_C_SOURCE
-Defining this macro causes header files to expose definitions as follows:
+Defining this macro causes header files to expose definitions
+conforming to the following standards,
+depending on the value.
 .RS
-.IP \[bu] 3
-The value 1 exposes definitions conforming to POSIX.1-1990 and
-ISO C (1990).
-.IP \[bu]
-The value 2 or greater additionally exposes
-definitions for POSIX.2-1992.
-.IP \[bu]
-The value 199309L or greater additionally exposes
-definitions for POSIX.1b (real-time extensions).
-.\" 199506L functionality is available only since glibc 2.1
-.IP \[bu]
-The value 199506L or greater additionally exposes
-definitions for POSIX.1c (threads).
-.IP \[bu]
-(Since glibc 2.3.3)
-The value 200112L or greater additionally exposes definitions corresponding
-to the POSIX.1-2001 base specification (excluding the XSI extension).
-This value also causes C95 (since glibc 2.12) and
-C99 (since glibc 2.10) features to be exposed
-(in other words, the equivalent of defining
-.BR _ISOC99_SOURCE ).
-.IP \[bu]
-(Since glibc 2.10)
-The value 200809L or greater additionally exposes definitions corresponding
-to the POSIX.1-2008 base specification (excluding the XSI extension).
+.TP
+.RB >=\~ 1
+POSIX.1-1990.
+POSIX.1-1990 implies ISO C90.
+.TP
+.RB >=\~ 2
+POSIX.2-1992.
+.TP
+.RB >=\~ 199309L
+POSIX.1b (real-time extensions).
+.TP
+.BR 199506L "  (since glibc 2.1)"
+POSIX.1c (threads).
+.TP
+.BR 200112L "  (since glibc 2.3.3)"
+POSIX.1-2001 (excluding the XSI extension).
+POSIX.1-2001 implies ISO C99.
+.TP
+.BR 200809L "  (since glibc 2.10)"
+POSIX.1-2008 (excluding the XSI extension).
+POSIX.1-2008 implies ISO C99.
 .RE
 .TP
 .B _POSIX_SOURCE
