@@ -209,167 +209,102 @@ or
 flag.
 .TP
 .B _POSIX_C_SOURCE
-Defining this macro causes header files to expose definitions as follows:
-.RS
-.IP \[bu] 3
-The value 1 exposes definitions conforming to POSIX.1-1990 and
-ISO C (1990).
-.IP \[bu]
-The value 2 or greater additionally exposes
-definitions for POSIX.2-1992.
-.IP \[bu]
-The value 199309L or greater additionally exposes
-definitions for POSIX.1b (real-time extensions).
-.\" 199506L functionality is available only since glibc 2.1
-.IP \[bu]
-The value 199506L or greater additionally exposes
-definitions for POSIX.1c (threads).
-.IP \[bu]
-(Since glibc 2.3.3)
-The value 200112L or greater additionally exposes definitions corresponding
-to the POSIX.1-2001 base specification (excluding the XSI extension).
-This value also causes C95 (since glibc 2.12) and
-C99 (since glibc 2.10) features to be exposed
-(in other words, the equivalent of defining
-.BR _ISOC99_SOURCE ).
-.IP \[bu]
-(Since glibc 2.10)
-The value 200809L or greater additionally exposes definitions corresponding
-to the POSIX.1-2008 base specification (excluding the XSI extension).
-.RE
-.TP
-.B _POSIX_SOURCE
-Defining this obsolete macro with any value is equivalent to defining
-.B _POSIX_C_SOURCE
-with the value 1.
-.IP
-Since this macro is obsolete,
-its usage is generally not documented when discussing
-feature test macro requirements in the man pages.
-.TP
-.B _XOPEN_SOURCE
-Defining this macro causes header files to expose definitions as follows:
-.RS
-.IP \[bu] 3
-Defining with any value exposes
-definitions conforming to POSIX.1, POSIX.2, and XPG4.
-.IP \[bu]
-The value 500 or greater additionally exposes
-definitions for SUSv2 (UNIX 98).
-.IP \[bu]
-(Since glibc 2.2) The value 600 or greater additionally exposes
-definitions for SUSv3 (UNIX 03; i.e., the POSIX.1-2001 base specification
-plus the XSI extension) and C99 definitions.
-.IP \[bu]
-(Since glibc 2.10) The value 700 or greater additionally exposes
-definitions for SUSv4 (i.e., the POSIX.1-2008 base specification
-plus the XSI extension).
-.RE
-.IP
-If
-.B __STRICT_ANSI__
-is not defined, or
-.B _XOPEN_SOURCE
-is defined with a value greater than or equal to 500
-.I and
-neither
-.B _POSIX_SOURCE
-nor
-.B _POSIX_C_SOURCE
-is explicitly defined, then
-the following macros are implicitly defined:
-.RS
-.IP \[bu] 3
-.B _POSIX_SOURCE
-is defined with the value 1.
-.IP \[bu]
-.B _POSIX_C_SOURCE
-is defined, according to the value of
-.BR _XOPEN_SOURCE :
+Defining this macro causes header files to expose definitions
+conforming to the following standards,
+depending on the value.
 .RS
 .TP
-.BR _XOPEN_SOURCE " < 500"
-.B _POSIX_C_SOURCE
-is defined with the value 2.
+.RB >=\~ 1
+POSIX.1-1990.
+POSIX.1-1990 implies ISO C90.
 .TP
-.RB "500 <= " _XOPEN_SOURCE " < 600"
-.B _POSIX_C_SOURCE
-is defined with the value 199506L.
+.RB >=\~ 2
+POSIX.2-1992.
 .TP
-.RB "600 <= " _XOPEN_SOURCE " < 700"
-.B _POSIX_C_SOURCE
-is defined with the value 200112L.
+.RB >=\~ 199309L
+POSIX.1b (real-time extensions).
 .TP
-.RB "700 <= " _XOPEN_SOURCE " (since glibc 2.10)"
-.B _POSIX_C_SOURCE
-is defined with the value 200809L.
+.BR 199506L "  (since glibc 2.1)"
+POSIX.1c (threads).
+.TP
+.BR 200112L "  (since glibc 2.3.3)"
+POSIX.1-2001 (excluding the XSI extension).
+POSIX.1-2001 implies ISO C99.
+.TP
+.BR 200809L "  (since glibc 2.10)"
+POSIX.1-2008 (excluding the XSI extension).
+POSIX.1-2008 implies ISO C99.
 .RE
+.TP
+.BR _POSIX_SOURCE "  [[deprecated]]"
+Equivalent to
+.IR -D_POSIX_C_SOURCE=1 .
+.TP
+.B _XOPEN_SOURCE
+Defining this macro causes header files to expose definitions
+conforming to the following standards,
+depending on the value.
+.RS
+.TP
+.B 1
+POSIX.1, POSIX.2, XPG4.
+.TP
+.B 500
+SUSv2 (Issue 5).
+.TP
+.BR 600 "  (since glibc 2.2)"
+SUSv3 (Issue 6).
+SUSv3 is POSIX.1-2001 plus the XSI extension.
+.TP
+.BR 700 "  (since glibc 2.10)"
+SUSv4 (Issue 7).
+SUSv4 is POSIX.1-2008 plus the XSI extension.
 .RE
-.IP
-In addition, defining
-.B _XOPEN_SOURCE
-with a value of 500 or greater produces the same effects as defining
-.BR _XOPEN_SOURCE_EXTENDED .
 .TP
-.B _XOPEN_SOURCE_EXTENDED
-If this macro is defined,
-.I and
-.B _XOPEN_SOURCE
-is defined, then expose definitions corresponding to the XPG4v2
-(SUSv1) UNIX extensions (UNIX 95).
-Defining
-.B _XOPEN_SOURCE
-with a value of 500 or more also produces the same effect as defining
-.BR _XOPEN_SOURCE_EXTENDED .
-Use of
-.B _XOPEN_SOURCE_EXTENDED
-in new source code should be avoided.
-.IP
-Since defining
-.B _XOPEN_SOURCE
-with a value of 500 or more has the same effect as defining
-.BR _XOPEN_SOURCE_EXTENDED ,
-the latter (obsolete) feature test macro is generally not described in the
-SYNOPSIS in man pages.
+.BR _XOPEN_SOURCE_EXTENDED "  [[deprecated]]"
+Defining this macro causes header files to expose definitions
+conforming to SUSv1.
 .TP
-.BR _ISOC99_SOURCE " (since glibc 2.1.3)"
-Exposes declarations consistent with the ISO C99 standard.
-Defining this macro also exposes ISO C (1990) Amendment 1 ("C95") definitions.
-(The primary change in C95 was support for international character sets.)
+.BI _ISOC xx _SOURCE
+Defining one of these macros
+causes header files to expose definitions
+conforming to corresponding version of the ISO C standard.
 .IP
-Invoking the C compiler with the option
-.I \-std=c99
-produces the same effects as defining this macro.
+They should not be defined by programmers.
+Instead,
+the language version should be specified
+with the corresponding compiler flag.
+.RS
 .TP
-.BR _ISOC11_SOURCE " (since glibc 2.16)"
-Exposes declarations consistent with the ISO C11 standard.
-Defining this macro also enables C99 and C95 features (like
-.BR _ISOC99_SOURCE ).
-.IP
-Invoking the C compiler with the option
-.I \-std=c11
-produces the same effects as defining this macro.
+.BR _ISOC99_SOURCE "  (since glibc 2.1.3)"
+C99.
+Use
+.I -std=c99
+or
+.I -std=gnu99
+instead.
 .TP
-.BR _ISOC23_SOURCE " (since glibc 2.40)"
+.BR _ISOC11_SOURCE "  (since glibc 2.16)"
+C11.
+Use
+.I -std=c11
+or
+.I -std=gnu11
+instead.
+.TP
+.BR _ISOC23_SOURCE "  (since glibc 2.40)"
+.TQ
+.BR _ISOC2X_SOURCE "  (since glibc 2.31)  [[deprecated]]"
+C23.
+Use
+.I -std=c23
+or
+.I -std=gnu23
+instead.
 Exposes declarations consistent with the ISO C23 standard.
-.IP
-Since glibc 2.31,
-an equivalent macro named
-.B _ISOC2X_SOURCE
-was recognized
-(because the C23 standard had not then been finalized).
-Although the use of this macro is obsolete,
-glibc continues to recognize it for backward compatibility.
-.IP
-Defining
-.B _ISOC23_SOURCE
-also enables C11, C99, and C95 features.
-.IP
-Invoking the C compiler with the option
-.I \-std=c23
-produces the same effects as defining this macro.
+.RE
 .TP
-.B _LARGEFILE64_SOURCE
+.BR _LARGEFILE64_SOURCE "  [[deprecated]]"
 Expose definitions for the alternative API specified by the
 LFS (Large File Summit) as a "transitional extension" to the
 Single UNIX Specification.
@@ -391,8 +326,9 @@ instead
 .I _FILE_OFFSET_BITS=64
 should be employed.
 .TP
-.B _LARGEFILE_SOURCE
-This macro was historically used to expose certain functions (specifically
+.BR _LARGEFILE_SOURCE  "  [[deprecated]]"
+This macro was historically used to expose certain functions
+(specifically,
 .BR fseeko (3)
 and
 .BR ftello (3))
@@ -403,15 +339,14 @@ and
 that use
 .I long
 for file offsets.
-This macro is implicitly defined if
+These functions are now part of SUSv2;
+use
 .B _XOPEN_SOURCE
-is defined with a value greater than or equal to 500.
-New programs should not employ this macro;
+instead.
+Alternatively,
 defining
-.B _XOPEN_SOURCE
-as just described or defining
 .B _FILE_OFFSET_BITS
-with the value 64 is the preferred mechanism to achieve the same result.
+with the value 64 also serves for this.
 .TP
 .B _FILE_OFFSET_BITS
 Defining this macro with the value 64
@@ -440,7 +375,7 @@ It is closely related to
 and depending on implementation, may require it set.
 This macro is available as of glibc 2.34.
 .TP
-.BR _BSD_SOURCE " (deprecated since glibc 2.20)"
+.BR _BSD_SOURCE "  [[deprecated]]"
 Defining this macro with any value causes header files to expose
 BSD-derived definitions.
 .IP
@@ -482,7 +417,7 @@ in glibc 2.20 and later to compile without warnings, define
 and
 .BR _DEFAULT_SOURCE .
 .TP
-.BR _SVID_SOURCE " (deprecated since glibc 2.20)"
+.BR _SVID_SOURCE "  [[deprecated]]"
 Defining this macro with any value causes header files to expose
 System V-derived definitions.
 (SVID == System V Interface Definition;
@@ -554,7 +489,7 @@ also had the effect of implicitly defining
 and
 .BR _SVID_SOURCE .
 .TP
-.B _REENTRANT
+.BR _REENTRANT "  [[deprecated]]"
 Historically, on various C libraries
 it was necessary to define this macro in all
 multithreaded code.
@@ -596,8 +531,8 @@ has no effect.
 This macro is automatically defined if one compiles with
 .IR cc\~\-pthread .
 .TP
-.B _THREAD_SAFE
-Synonym for the (deprecated)
+.BR _THREAD_SAFE "  [[deprecated]]"
+Synonym for
 .BR _REENTRANT ,
 provided for compatibility with some other implementations.
 .TP
