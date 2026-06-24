@@ -236,14 +236,9 @@ POSIX.1-2008 (excluding the XSI extension).
 POSIX.1-2008 implies ISO C99.
 .RE
 .TP
-.B _POSIX_SOURCE
-Defining this obsolete macro with any value is equivalent to defining
-.B _POSIX_C_SOURCE
-with the value 1.
-.IP
-Since this macro is obsolete,
-its usage is generally not documented when discussing
-feature test macro requirements in the man pages.
+.BR _POSIX_SOURCE "  [[deprecated]]"
+Equivalent to
+.IR -D_POSIX_C_SOURCE=1 .
 .TP
 .B _XOPEN_SOURCE
 Defining this macro causes header files to expose definitions as follows:
