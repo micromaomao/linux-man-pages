@@ -265,41 +265,44 @@ SUSv4 is POSIX.1-2008 plus the XSI extension.
 Defining this macro causes header files to expose definitions
 conforming to SUSv1.
 .TP
-.BR _ISOC99_SOURCE " (since glibc 2.1.3)"
-Exposes declarations consistent with the ISO C99 standard.
-Defining this macro also exposes ISO C (1990) Amendment 1 ("C95") definitions.
+.BI _ISOC xx _SOURCE
+Defining one of these macros
+causes header files to expose definitions
+conforming to corresponding version of the ISO C standard.
 .IP
-Invoking the C compiler with the option
-.I \-std=c99
-produces the same effects as defining this macro.
+They should not be defined by programmers.
+Instead,
+the language version should be specified
+with the corresponding compiler flag.
+.RS
 .TP
-.BR _ISOC11_SOURCE " (since glibc 2.16)"
-Exposes declarations consistent with the ISO C11 standard.
-Defining this macro also enables C99 and C95 features (like
-.BR _ISOC99_SOURCE ).
-.IP
-Invoking the C compiler with the option
-.I \-std=c11
-produces the same effects as defining this macro.
+.BR _ISOC99_SOURCE "  (since glibc 2.1.3)"
+C99.
+Use
+.I -std=c99
+or
+.I -std=gnu99
+instead.
 .TP
-.BR _ISOC23_SOURCE " (since glibc 2.40)"
+.BR _ISOC11_SOURCE "  (since glibc 2.16)"
+C11.
+Use
+.I -std=c11
+or
+.I -std=gnu11
+instead.
+.TP
+.BR _ISOC23_SOURCE "  (since glibc 2.40)"
+.TQ
+.BR _ISOC2X_SOURCE "  (since glibc 2.31)  [[deprecated]]"
+C23.
+Use
+.I -std=c23
+or
+.I -std=gnu23
+instead.
 Exposes declarations consistent with the ISO C23 standard.
-.IP
-Since glibc 2.31,
-an equivalent macro named
-.B _ISOC2X_SOURCE
-was recognized
-(because the C23 standard had not then been finalized).
-Although the use of this macro is obsolete,
-glibc continues to recognize it for backward compatibility.
-.IP
-Defining
-.B _ISOC23_SOURCE
-also enables C11, C99, and C95 features.
-.IP
-Invoking the C compiler with the option
-.I \-std=c23
-produces the same effects as defining this macro.
+.RE
 .TP
 .B _LARGEFILE64_SOURCE
 Expose definitions for the alternative API specified by the
