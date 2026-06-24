@@ -31,6 +31,7 @@ Files
        Notes for maintainers.
 
    README
+   README.d/*
        Main information about the project and the repository.
 
    RELEASE
