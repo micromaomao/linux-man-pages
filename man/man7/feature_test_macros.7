@@ -609,66 +609,6 @@ is explicitly defined, then
 and
 .B _DEFAULT_SOURCE
 are not defined by default.
-.P
-If
-.B _POSIX_SOURCE
-and
-.B _POSIX_C_SOURCE
-are not explicitly defined,
-and either
-.B __STRICT_ANSI__
-is not defined or
-.B _XOPEN_SOURCE
-is defined with a value of 500 or more, then
-.IP \[bu] 3
-.B _POSIX_SOURCE
-is defined with the value 1;
-and
-.IP \[bu]
-.B _POSIX_C_SOURCE
-is defined with one of the following values:
-.RS
-.IP \[bu] 3
-2,
-if
-.B _XOPEN_SOURCE
-is defined with a value less than 500;
-.IP \[bu]
-199506L,
-if
-.B _XOPEN_SOURCE
-is defined with a value greater than or equal to 500 and less than 600;
-or
-.IP \[bu]
-(since glibc 2.4) 200112L,
-if
-.B _XOPEN_SOURCE
-is defined with a value greater than or equal to 600 and less than 700.
-.IP \[bu]
-(Since glibc 2.10)
-200809L,
-if
-.B _XOPEN_SOURCE
-is defined with a value greater than or equal to 700.
-.IP \[bu]
-Older versions of glibc do not know about the values
-200112L and 200809L for
-.BR _POSIX_C_SOURCE ,
-and the setting of this macro will depend on the glibc version.
-.IP \[bu]
-If
-.B _XOPEN_SOURCE
-is undefined, then the setting of
-.B _POSIX_C_SOURCE
-depends on the glibc version:
-199506L, before glibc 2.4;
-200112L, since glibc 2.4 to glibc 2.9;
-and
-200809L, since glibc 2.10.
-.RE
-.P
-Multiple macros can be defined;
-the results are additive.
 .SH STANDARDS
 POSIX.1 specifies
 .BR _POSIX_C_SOURCE ,
