@@ -1074,7 +1074,10 @@ instructs the modem to "hang up".
 The actual bit rate corresponding to
 .B B38400
 may be altered with
-.BR setserial (8).
+.BR setserial (8);
+doing so is discouraged
+as it may break other applications
+later trying to use the same serial port.
 .P
 The input and output baud rates are stored in the
 .I termios
