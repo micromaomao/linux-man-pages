@@ -19,31 +19,29 @@ Standard C library
 .EX
 struct termios {
 	// At least these members, in no particular order
-	tcflag_t  c_iflag;      /* input modes */
-	tcflag_t  c_oflag;      /* output modes */
-	tcflag_t  c_cflag;      /* control modes */
-	tcflag_t  c_lflag;      /* local modes */
-	cc_t      c_cc[NCCS];   /* special characters */
+	tcflag_t  c_iflag;
+	tcflag_t  c_oflag;
+	tcflag_t  c_cflag;
+	tcflag_t  c_lflag;
+	cc_t      c_cc[NCCS];
 };
 .EE
 .SH DESCRIPTION
-Many of the functions described here have a
-.I termios_p
-argument
-that is a pointer to a
-.I termios
-structure.
-This structure contains at least the following members:
-.P
-.in +4n
-.EX
-tcflag_t c_iflag;      /* input modes */
-tcflag_t c_oflag;      /* output modes */
-tcflag_t c_cflag;      /* control modes */
-tcflag_t c_lflag;      /* local modes */
-cc_t     c_cc[NCCS];   /* special characters */
-.EE
-.in
+.TP
+.I .c_iflag
+Input modes.
+.TP
+.I .c_oflag
+Output modes.
+.TP
+.I .c_cflag
+Control modes.
+.TP
+.I .c_lflag
+Local modes.
+.TP
+.I .c_cc
+Special characters.
 .P
 The values that may be assigned to these fields are described below.
 In the case of the first four bit-mask fields,
@@ -57,8 +55,26 @@ value is not specified in POSIX.1-2001,
 and "XSI" means that the value is specified in POSIX.1-2001
 as part of the XSI extension.
 .P
-.I c_iflag
-flag constants:
+The below symbolic subscript values are all different,
+except that
+.BR VTIME ,
+.B VMIN
+may have the same value as
+.BR VEOL ,
+.BR VEOF ,
+respectively.
+In noncanonical mode,
+the special character meaning
+is replaced by the timeout meaning.
+For an explanation of
+.B VMIN
+and
+.BR VTIME ,
+see the description of
+noncanonical mode
+in
+.BR termios (3).
+.SS \f[I].c_iflag\f[] flag constants
 .TP
 .B IGNBRK
 Ignore BREAK condition on input.
@@ -155,9 +171,7 @@ Linux does not implement this bit, and acts as if it is always set.
 .BR IUTF8 " (since Linux 2.6.4)"
 (not in POSIX) Input is UTF8;
 this allows character-erase to be correctly performed in cooked mode.
-.P
-.I c_oflag
-flag constants:
+.SS \f[I].c_oflag\f[] flag constants
 .TP
 .B OPOST
 Enable implementation-defined output processing.
@@ -269,9 +283,7 @@ or
 .B _SVID_SOURCE
 or
 .BR _XOPEN_SOURCE ]
-.P
-.I c_cflag
-flag constants:
+.SS \f[I].c_cflag\f[] flag constants
 .TP
 .B CBAUD
 (not in POSIX) Baud speed mask (4+1 bits).
@@ -298,7 +310,7 @@ for getting at it.
 Some systems use bits selected by
 .B CBAUD
 in
-.IR c_cflag ,
+.IR .c_cflag ,
 other systems use separate fields, for example,
 .I sg_ispeed
 and
@@ -385,9 +397,7 @@ Enable RTS/CTS (hardware) flow control.
 .B _BSD_SOURCE
 or
 .BR _SVID_SOURCE ]
-.P
-.I c_lflag
-flag constants:
+.SS \f[I].c_lflag\f[] flag constants
 .TP
 .B ISIG
 When any of the characters INTR, QUIT, SUSP, or DSUSP are received,
@@ -532,9 +542,9 @@ special characters EOL2, LNEXT, REPRINT, WERASE to be interpreted,
 and for the
 .B IUCLC
 flag to be effective.
-.P
+.SS \f[I].c_cc\f[] array indices
 The
-.I c_cc
+.I .c_cc
 array defines the terminal special characters.
 The symbolic indices (initial values) and meaning are:
 .TP
@@ -729,29 +739,9 @@ and then not passed as input.
 .P
 An individual terminal special character can be disabled
 by setting the value of the corresponding
-.I c_cc
+.I .c_cc
 element to
 .BR _POSIX_VDISABLE .
-.P
-The above symbolic subscript values are all different,
-except that
-.BR VTIME ,
-.B VMIN
-may have the same value as
-.BR VEOL ,
-.BR VEOF ,
-respectively.
-In noncanonical mode,
-the special character meaning
-is replaced by the timeout meaning.
-For an explanation of
-.B VMIN
-and
-.BR VTIME ,
-see the description of
-noncanonical mode
-in
-.BR termios (3).
 .SH STANDARDS
 POSIX.1-2024.
 .SH HISTORY
