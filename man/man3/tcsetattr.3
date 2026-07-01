@@ -68,18 +68,6 @@ on success.
 on failure and set
 .I errno
 to indicate the error.
-.P
-Note that
-.BR tcsetattr ()
-returns success if
-.I any
-of the requested changes could be
-successfully carried out.
-Therefore,
-when making multiple changes,
-it may be necessary to follow this call with a further call to
-.BR tcgetattr ()
-to check that all changes have been performed successfully.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section,
 see
@@ -100,6 +88,17 @@ T}	Thread safety	MT-Safe
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
+.SH CAVEATS
+.BR tcsetattr ()
+returns success if
+.I any
+of the requested changes could be
+successfully carried out.
+Therefore,
+when making multiple changes,
+it may be necessary to follow this call with a further call to
+.BR tcgetattr ()
+to check that all changes have been performed successfully.
 .SH SEE ALSO
 .BR termios (3),
 .BR termios (3type)
