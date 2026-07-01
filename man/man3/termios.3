@@ -6,7 +6,7 @@
 .\"
 .TH termios 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-termios, tcsendbreak, tcdrain, tcflush, tcflow,
+termios, tcdrain, tcflush, tcflow,
 cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed, cfsetspeed \-
 get and set terminal attributes, line control, get and set baud rate
 .SH LIBRARY
@@ -17,7 +17,6 @@ Standard C library
 .B #include <termios.h>
 .B #include <unistd.h>
 .P
-.BI "int tcsendbreak(int " fd ", int " duration );
 .BI "int tcdrain(int " fd );
 .BI "int tcflush(int " fd ", int " queue_selector );
 .BI "int tcflow(int " fd ", int " action );
@@ -57,24 +56,8 @@ See
 .TP
 .BR cfmakeraw (3)
 .SS Line control
-.BR tcsendbreak ()
-transmits a continuous stream of zero-valued bits for a specific duration,
-if the terminal is using asynchronous serial data transmission.
-If
-.I duration
-is zero,
-it transmits zero-valued bits
-for at least 0.25 seconds,
-and not more than 0.5 seconds.
-If
-.I duration
-is not zero,
-it sends zero-valued bits for some
-implementation-defined length of time.
-.P
-If the terminal is not using asynchronous serial data transmission,
-.BR tcsendbreak ()
-returns without taking any action.
+.TP
+.BR tcsendbreak (3)
 .P
 .BR tcdrain ()
 waits until all output written to the object referred to by
@@ -340,7 +323,6 @@ T{
 .BR tcdrain (),
 .BR tcflush (),
 .BR tcflow (),
-.BR tcsendbreak (),
 .BR cfgetispeed (),
 .BR cfgetospeed (),
 .BR cfsetispeed (),
@@ -351,7 +333,6 @@ T}	Thread safety	MT-Safe
 .\" FIXME: The markings are different from that in the glibc manual.
 .\" markings in glibc manual are more detailed:
 .\"
-.\"     tcsendbreak: MT-Unsafe race:tcattr(filedes)/bsd
 .\"     tcflow: MT-Unsafe race:tcattr(filedes)/bsd
 .\"
 .\" glibc manual says /bsd indicate the preceding marker only applies
@@ -359,8 +340,6 @@ T}	Thread safety	MT-Safe
 .\" So, it is safety in Linux kernel.
 .SH STANDARDS
 .TP
-.BR tcsendbreak ()
-.TQ
 .BR tcdrain ()
 .TQ
 .BR tcflush ()
@@ -380,8 +359,6 @@ POSIX.1-2008.
 BSD.
 .SH HISTORY
 .TP
-.BR tcsendbreak ()
-.TQ
 .BR tcdrain ()
 .TQ
 .BR tcflush ()
@@ -410,32 +387,6 @@ one finds the two constants
 .B EXTB
 ("External A" and "External B").
 Many systems extend the list with much higher baud rates.
-.P
-The effect of a nonzero
-.I duration
-with
-.BR tcsendbreak ()
-varies.
-SunOS specifies a break of
-.I "duration\ *\ N"
-seconds, where
-.I N
-is at least 0.25, and not more than 0.5.
-Linux, AIX, DU, Tru64 send a break of
-.I duration
-milliseconds.
-FreeBSD and NetBSD and HP-UX and MacOS ignore the value of
-.IR duration .
-Under Solaris and UnixWare,
-.BR tcsendbreak ()
-with nonzero
-.I duration
-behaves like
-.BR tcdrain ().
-.\" libc4 until 4.7.5, glibc for sysv: EINVAL for duration > 0.
-.\" libc4.7.6, libc5, glibc for unix: duration in ms.
-.\" glibc for bsd: duration in us
-.\" glibc for sunos4: ignore duration
 .SH SEE ALSO
 .BR reset (1),
 .BR setterm (1),
