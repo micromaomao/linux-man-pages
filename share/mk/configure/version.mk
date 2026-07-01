@@ -40,7 +40,6 @@ DISTFILESCMD := \
 	| $(GREP) -v '^$(srcdir)/.git$$' \
 	| $(GREP) -v '^$(srcdir)/.git/' \
 	| $(GREP) -v '^$(srcdir)/.tmp/' \
-	| $(GREP) -v '^$(srcdir)/.checkpatch-camelcase.' \
 	| $(SORT)
 
 DISTDATECMD := \
