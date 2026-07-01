@@ -22,12 +22,14 @@ Standard C library
 .BR tcsendbreak ()
 transmits a continuous stream of zero-valued bits for a specific duration,
 if the terminal is using asynchronous serial data transmission.
+.P
 If
 .I duration
 is zero,
 it transmits zero-valued bits
 for at least 0.25 seconds,
 and not more than 0.5 seconds.
+.P
 If
 .I duration
 is not zero,
@@ -69,11 +71,7 @@ T}	Thread safety	MT-Safe
 .\" glibc manual says /bsd indicate the preceding marker only applies
 .\" when the underlying kernel is a BSD kernel.
 .\" So, it is safety in Linux kernel.
-.SH STANDARDS
-POSIX.1-2008.
-.SH HISTORY
-POSIX.1-2001.
-.SH NOTES
+.SH VERSIONS
 The effect of a nonzero
 .I duration
 with
@@ -94,11 +92,15 @@ Under Solaris and UnixWare,
 with nonzero
 .I duration
 behaves like
-.BR tcdrain ().
+.BR tcdrain (3).
 .\" libc4 until 4.7.5, glibc for sysv: EINVAL for duration > 0.
 .\" libc4.7.6, libc5, glibc for unix: duration in ms.
 .\" glibc for bsd: duration in us
 .\" glibc for sunos4: ignore duration
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH SEE ALSO
 .BR tcdrain (3),
 .BR tcflush (3),
