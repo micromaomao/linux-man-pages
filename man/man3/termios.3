@@ -7,7 +7,7 @@
 .TH termios 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
 termios, tcsendbreak, tcdrain, tcflush, tcflow,
-cfmakeraw, cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed, cfsetspeed \-
+cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed, cfsetspeed \-
 get and set terminal attributes, line control, get and set baud rate
 .SH LIBRARY
 Standard C library
@@ -22,8 +22,6 @@ Standard C library
 .BI "int tcflush(int " fd ", int " queue_selector );
 .BI "int tcflow(int " fd ", int " action );
 .P
-.BI "void cfmakeraw(struct termios *" termios_p );
-.P
 .BI "speed_t cfgetispeed(const struct termios *" termios_p );
 .BI "speed_t cfgetospeed(const struct termios *" termios_p );
 .P
@@ -37,8 +35,7 @@ Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
 .P
-.BR cfsetspeed (),
-.BR cfmakeraw ():
+.BR cfsetspeed ():
 .nf
     Since glibc 2.19:
         _DEFAULT_SOURCE
@@ -57,25 +54,8 @@ provided to control asynchronous communications ports.
 See
 .BR termios (3type).
 .SS Raw mode
-.BR cfmakeraw ()
-sets the terminal to something like the
-"raw" mode of the old Version 7 terminal driver:
-input is available character by character,
-echoing is disabled,
-and all special processing of terminal input and output characters is disabled.
-The terminal attributes are set as follows:
-.P
-.in +4n
-.EX
-termios_p\->c_iflag &= \[ti](IGNBRK | BRKINT | PARMRK | ISTRIP
-                | INLCR | IGNCR | ICRNL | IXON);
-termios_p\->c_oflag &= \[ti]OPOST;
-termios_p\->c_lflag &= \[ti](ECHO | ECHONL | ICANON | ISIG | IEXTEN);
-termios_p\->c_cflag &= \[ti](CSIZE | PARENB);
-termios_p\->c_cflag |= CS8;
-.EE
-.in
-.\"
+.TP
+.BR cfmakeraw (3)
 .SS Line control
 .BR tcsendbreak ()
 transmits a continuous stream of zero-valued bits for a specific duration,
@@ -361,7 +341,6 @@ T{
 .BR tcflush (),
 .BR tcflow (),
 .BR tcsendbreak (),
-.BR cfmakeraw (),
 .BR cfgetispeed (),
 .BR cfgetospeed (),
 .BR cfsetispeed (),
@@ -397,8 +376,6 @@ T}	Thread safety	MT-Safe
 .BR cfsetospeed ()
 POSIX.1-2008.
 .TP
-.BR cfmakeraw ()
-.TQ
 .BR cfsetspeed ()
 BSD.
 .SH HISTORY
@@ -420,8 +397,6 @@ BSD.
 .BR cfsetospeed ()
 POSIX.1-2001.
 .TP
-.BR cfmakeraw ()
-.TQ
 .BR cfsetspeed ()
 BSD.
 .SH NOTES
