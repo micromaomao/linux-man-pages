@@ -271,7 +271,7 @@ interrupt key to generate
 .BR SIGINT ),
 that signal is sent to the foreground process group.
 (See
-.BR termios (3)
+.BR termios (3type)
 for a description of the characters that generate signals.)
 Only the foreground process group may
 .BR read (2)
@@ -314,5 +314,6 @@ in a different session (see also
 .BR setsid (2),
 .BR tcgetpgrp (3),
 .BR tcsetpgrp (3),
-.BR termios (3),
+.BR termios (3type),
+.BR termios (7),
 .BR credentials (7)

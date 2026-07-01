@@ -1,1 +1,87 @@
-.so man3/termios.3
+'\" t
+.\" Copyright 2006-2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: GPL-2.0-or-later
+.\"
+.TH tcflow 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+tcflow
+\-
+suspect transmission or reception of data
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <termios.h>
+.P
+.BI "int tcflow(int " fd ", int " action );
+.fi
+.SH DESCRIPTION
+.BR tcflow ()
+suspends transmission or reception of data
+on the object referred to by
+.IR fd ,
+depending on the value of
+.IR action :
+.TP
+.B TCOOFF
+suspends output.
+.TP
+.B TCOON
+restarts suspended output.
+.TP
+.B TCIOFF
+transmits a STOP character,
+which stops the terminal device from
+transmitting data to the system.
+.TP
+.B TCION
+transmits a START character,
+which starts the terminal device
+transmitting data to the system.
+.P
+The default on open of a terminal file is that
+neither its input nor its output is suspended.
+.SH RETURN VALUE
+.TP
+.B 0
+on success.
+.TP
+.B \-1
+on failure and set
+.I errno
+to indicate the error.
+.SH ATTRIBUTES
+For an explanation of the terms used in this section,
+see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR tcflow ()
+T}	Thread safety	MT-Safe
+.TE
+.\" FIXME: The markings are different from that in the glibc manual.
+.\" markings in glibc manual are more detailed:
+.\"
+.\"     tcflow: MT-Unsafe race:tcattr(filedes)/bsd
+.\"
+.\" glibc manual says /bsd indicate the preceding marker only applies
+.\" when the underlying kernel is a BSD kernel.
+.\" So, it is safety in Linux kernel.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.SH SEE ALSO
+.BR tcsendbreak (3),
+.BR tcdrain (3),
+.BR tcflush (3),
+.BR termios (7)

@@ -1,1 +1,108 @@
-.so man3/termios.3
+'\" t
+.\" Copyright 2006-2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: GPL-2.0-or-later
+.\"
+.TH tcsendbreak 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+tcsendbreak
+\-
+send a continuous stream of zero-valued bits
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <termios.h>
+.P
+.BI "int tcsendbreak(int " fd ", int " duration );
+.fi
+.SH DESCRIPTION
+.BR tcsendbreak ()
+transmits a continuous stream of zero-valued bits for a specific duration,
+if the terminal is using asynchronous serial data transmission.
+.P
+If
+.I duration
+is zero,
+it transmits zero-valued bits
+for at least 0.25 seconds,
+and not more than 0.5 seconds.
+.P
+If
+.I duration
+is not zero,
+it sends zero-valued bits for some
+implementation-defined length of time.
+.P
+If the terminal is not using asynchronous serial data transmission,
+.BR tcsendbreak ()
+returns without taking any action.
+.SH RETURN VALUE
+.TP
+.B 0
+on success.
+.TP
+.B \-1
+on failure and set
+.I errno
+to indicate the error.
+.SH ATTRIBUTES
+For an explanation of the terms used in this section,
+see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR tcsendbreak ()
+T}	Thread safety	MT-Safe
+.TE
+.\" FIXME: The markings are different from that in the glibc manual.
+.\" markings in glibc manual are more detailed:
+.\"
+.\"     tcsendbreak: MT-Unsafe race:tcattr(filedes)/bsd
+.\"
+.\" glibc manual says /bsd indicate the preceding marker only applies
+.\" when the underlying kernel is a BSD kernel.
+.\" So, it is safety in Linux kernel.
+.SH VERSIONS
+The effect of a nonzero
+.I duration
+with
+.BR tcsendbreak ()
+varies.
+SunOS specifies a break of
+.I "duration\ *\ N"
+seconds, where
+.I N
+is at least 0.25, and not more than 0.5.
+Linux, AIX, DU, Tru64 send a break of
+.I duration
+milliseconds.
+FreeBSD and NetBSD and HP-UX and MacOS ignore the value of
+.IR duration .
+Under Solaris and UnixWare,
+.BR tcsendbreak ()
+with nonzero
+.I duration
+behaves like
+.BR tcdrain (3).
+.\" libc4 until 4.7.5, glibc for sysv: EINVAL for duration > 0.
+.\" libc4.7.6, libc5, glibc for unix: duration in ms.
+.\" glibc for bsd: duration in us
+.\" glibc for sunos4: ignore duration
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.SH SEE ALSO
+.BR tcdrain (3),
+.BR tcflush (3),
+.BR tcflow (3),
+.BR termios (7)
