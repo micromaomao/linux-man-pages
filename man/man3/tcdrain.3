@@ -1,1 +1,58 @@
-.so man3/termios.3
+'\" t
+.\" Copyright 2006-2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: GPL-2.0-or-later
+.\"
+.TH tcdrain 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+tcdrain
+\-
+block until output is transmitted
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <termios.h>
+.P
+.BI "int tcdrain(int " fd );
+.fi
+.SH DESCRIPTION
+.BR tcdrain ()
+waits until all output written to the object referred to by
+.I fd
+has been transmitted.
+.SH RETURN VALUE
+.TP
+.B 0
+on success.
+.TP
+.B \-1
+on failure and set
+.I errno
+to indicate the error.
+.SH ATTRIBUTES
+For an explanation of the terms used in this section,
+see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR tcdrain ()
+T}	Thread safety	MT-Safe
+.TE
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.SH SEE ALSO
+.BR tcsendbreak (3),
+.BR tcflush (3),
+.BR tcflow (3),
+.BR termios (3)

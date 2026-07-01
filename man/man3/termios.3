@@ -6,7 +6,7 @@
 .\"
 .TH termios 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-termios, tcdrain, tcflush, tcflow,
+termios, tcflush, tcflow,
 cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed, cfsetspeed \-
 get and set terminal attributes, line control, get and set baud rate
 .SH LIBRARY
@@ -17,7 +17,6 @@ Standard C library
 .B #include <termios.h>
 .B #include <unistd.h>
 .P
-.BI "int tcdrain(int " fd );
 .BI "int tcflush(int " fd ", int " queue_selector );
 .BI "int tcflow(int " fd ", int " action );
 .P
@@ -58,11 +57,8 @@ See
 .SS Line control
 .TP
 .BR tcsendbreak (3)
-.P
-.BR tcdrain ()
-waits until all output written to the object referred to by
-.I fd
-has been transmitted.
+.TQ
+.BR tcdrain (3)
 .P
 .BR tcflush ()
 discards data written to the object referred to by
@@ -320,7 +316,6 @@ Interface	Attribute	Value
 T{
 .na
 .nh
-.BR tcdrain (),
 .BR tcflush (),
 .BR tcflow (),
 .BR cfgetispeed (),
@@ -340,8 +335,6 @@ T}	Thread safety	MT-Safe
 .\" So, it is safety in Linux kernel.
 .SH STANDARDS
 .TP
-.BR tcdrain ()
-.TQ
 .BR tcflush ()
 .TQ
 .BR tcflow ()
@@ -359,8 +352,6 @@ POSIX.1-2008.
 BSD.
 .SH HISTORY
 .TP
-.BR tcdrain ()
-.TQ
 .BR tcflush ()
 .TQ
 .BR tcflow ()
