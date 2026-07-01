@@ -6,7 +6,7 @@
 .\"
 .TH termios 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-termios, tcflush, tcflow,
+termios, tcflow,
 cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed, cfsetspeed \-
 get and set terminal attributes, line control, get and set baud rate
 .SH LIBRARY
@@ -17,7 +17,6 @@ Standard C library
 .B #include <termios.h>
 .B #include <unistd.h>
 .P
-.BI "int tcflush(int " fd ", int " queue_selector );
 .BI "int tcflow(int " fd ", int " action );
 .P
 .BI "speed_t cfgetispeed(const struct termios *" termios_p );
@@ -59,24 +58,8 @@ See
 .BR tcsendbreak (3)
 .TQ
 .BR tcdrain (3)
-.P
-.BR tcflush ()
-discards data written to the object referred to by
-.I fd
-but not transmitted,
-or data received but not read,
-depending on the value of
-.IR queue_selector :
-.TP
-.B TCIFLUSH
-flushes data received but not read.
-.TP
-.B TCOFLUSH
-flushes data written but not transmitted.
-.TP
-.B TCIOFLUSH
-flushes both data received but not read,
-and data written but not transmitted.
+.TQ
+.BR tcflush (3)
 .P
 .BR tcflow ()
 suspends transmission or reception of data
@@ -316,7 +299,6 @@ Interface	Attribute	Value
 T{
 .na
 .nh
-.BR tcflush (),
 .BR tcflow (),
 .BR cfgetispeed (),
 .BR cfgetospeed (),
@@ -335,8 +317,6 @@ T}	Thread safety	MT-Safe
 .\" So, it is safety in Linux kernel.
 .SH STANDARDS
 .TP
-.BR tcflush ()
-.TQ
 .BR tcflow ()
 .TQ
 .BR cfgetispeed ()
@@ -352,8 +332,6 @@ POSIX.1-2008.
 BSD.
 .SH HISTORY
 .TP
-.BR tcflush ()
-.TQ
 .BR tcflow ()
 .TQ
 .BR cfgetispeed ()
