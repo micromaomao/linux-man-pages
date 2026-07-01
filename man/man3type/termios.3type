@@ -745,7 +745,7 @@ element to
 The setting of the
 .B ICANON
 canon flag in
-.I c_lflag
+.I .c_lflag
 determines whether the terminal is operating
 in canonical mode
 .RB ( ICANON
@@ -809,9 +809,9 @@ The read buffer will only accept 4095 chars;
 this provides the necessary space for a newline char
 if the input mode is switched to canonical.
 The settings of MIN
-.RI ( c_cc[VMIN] )
+.RI ( .c_cc[VMIN] )
 and TIME
-.RI ( c_cc[VTIME] )
+.RI ( .c_cc[VTIME] )
 determine the circumstances in which a
 .BR read (2)
 completes;
