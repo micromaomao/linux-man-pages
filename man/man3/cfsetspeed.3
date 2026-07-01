@@ -204,8 +204,7 @@ the input baud rate will be
 equal to the output baud rate.
 .P
 .BR cfsetspeed ()
-is a 4.4BSD extension.
-It takes the same arguments as
+takes the same arguments as
 .BR cfsetispeed (),
 and sets both input and output speed.
 .SH RETURN VALUE
@@ -247,6 +246,17 @@ T{
 .BR cfsetspeed ()
 T}	Thread safety	MT-Safe
 .TE
+.SH VERSIONS
+UNIX\ V7 and several later systems have a list of baud rates
+where after the values
+.B B0
+through
+.B B9600
+one finds the two constants
+.BR EXTA ,
+.B EXTB
+("External A" and "External B").
+Many systems extend the list with much higher baud rates.
 .SH STANDARDS
 .TP
 .BR cfgetispeed ()
@@ -272,18 +282,7 @@ BSD.
 POSIX.1-2001.
 .TP
 .BR cfsetspeed ()
-BSD.
-.SH NOTES
-UNIX\ V7 and several later systems have a list of baud rates
-where after the values
-.B B0
-through
-.B B9600
-one finds the two constants
-.BR EXTA ,
-.B EXTB
-("External A" and "External B").
-Many systems extend the list with much higher baud rates.
+4.4BSD.
 .SH SEE ALSO
 .BR speed_t (3type),
 .BR termios (3type)
