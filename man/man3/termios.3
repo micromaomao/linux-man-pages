@@ -6,7 +6,7 @@
 .\"
 .TH termios 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-termios, tcflow,
+termios,
 cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed, cfsetspeed \-
 get and set terminal attributes, line control, get and set baud rate
 .SH LIBRARY
@@ -16,8 +16,6 @@ Standard C library
 .nf
 .B #include <termios.h>
 .B #include <unistd.h>
-.P
-.BI "int tcflow(int " fd ", int " action );
 .P
 .BI "speed_t cfgetispeed(const struct termios *" termios_p );
 .BI "speed_t cfgetospeed(const struct termios *" termios_p );
@@ -60,32 +58,8 @@ See
 .BR tcdrain (3)
 .TQ
 .BR tcflush (3)
-.P
-.BR tcflow ()
-suspends transmission or reception of data
-on the object referred to by
-.IR fd ,
-depending on the value of
-.IR action :
-.TP
-.B TCOOFF
-suspends output.
-.TP
-.B TCOON
-restarts suspended output.
-.TP
-.B TCIOFF
-transmits a STOP character,
-which stops the terminal device from
-transmitting data to the system.
-.TP
-.B TCION
-transmits a START character,
-which starts the terminal device
-transmitting data to the system.
-.P
-The default on open of a terminal file is that
-neither its input nor its output is suspended.
+.TQ
+.BR tcflow (3)
 .SS Line speed
 The baud rate functions are provided
 for getting and setting
@@ -299,7 +273,6 @@ Interface	Attribute	Value
 T{
 .na
 .nh
-.BR tcflow (),
 .BR cfgetispeed (),
 .BR cfgetospeed (),
 .BR cfsetispeed (),
@@ -307,18 +280,8 @@ T{
 .BR cfsetspeed ()
 T}	Thread safety	MT-Safe
 .TE
-.\" FIXME: The markings are different from that in the glibc manual.
-.\" markings in glibc manual are more detailed:
-.\"
-.\"     tcflow: MT-Unsafe race:tcattr(filedes)/bsd
-.\"
-.\" glibc manual says /bsd indicate the preceding marker only applies
-.\" when the underlying kernel is a BSD kernel.
-.\" So, it is safety in Linux kernel.
 .SH STANDARDS
 .TP
-.BR tcflow ()
-.TQ
 .BR cfgetispeed ()
 .TQ
 .BR cfgetospeed ()
@@ -332,8 +295,6 @@ POSIX.1-2008.
 BSD.
 .SH HISTORY
 .TP
-.BR tcflow ()
-.TQ
 .BR cfgetispeed ()
 .TQ
 .BR cfgetospeed ()
