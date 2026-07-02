@@ -912,6 +912,6 @@ line discipline code of the terminal driver as a result
 .B TABDLY
 mask).
 .SH SEE ALSO
-.BR termios (3),
 .BR cc_t (3type),
-.BR tcflag_t (3type)
+.BR tcflag_t (3type),
+.BR termios (7)

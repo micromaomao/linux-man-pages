@@ -31,4 +31,5 @@ POSIX.1-2024.
 .SH HISTORY
 POSIX.1-1988.
 .SH SEE ALSO
-.BR termios (3)
+.BR termios (3type),
+.BR termios (7)
