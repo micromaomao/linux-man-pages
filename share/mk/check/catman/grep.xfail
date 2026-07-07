@@ -11,5 +11,6 @@ man5/proc_timer_stats.5
 man5/proc_version.5
 man5/slabinfo.5
 man7/keyrings.7
+man7/landlock.7
 man7/string_copying.7
 man7/uri.7
