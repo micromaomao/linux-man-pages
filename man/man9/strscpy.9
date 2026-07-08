@@ -1,0 +1,53 @@
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH strscpy 9 (date) "Linux man-pages (unreleased)"
+.SH NAME
+strscpy \- string truncate copy
+.SH LIBRARY
+Linux kernel
+.SH SYNOPSIS
+.nf
+.B #include <linux/string.h>
+.P
+.BR ssize_t\~strscpy( size_t\~dsize;
+.BI "                char\~" dst [restrict\~ dsize "], const\~char\~*restrict\~" src ,
+.BI "                size_t\~" dsize );
+.fi
+.SH DESCRIPTION
+This function copies the string pointed to by
+.IR src ,
+into a string at the buffer pointed to by
+.IR dst .
+.P
+If the string doesn't fit in the buffer,
+it is truncated.
+.SH RETURN VALUE
+On success,
+the length of the new string is returned.
+.P
+On error,
+a negative error code is returned.
+.SH ERRORS
+.TP
+.B \-E2BIG
+The string was truncated.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux.
+.SH CAVEATS
+The "s" in the name of this function refers to safety,
+but safety is a relative term that doesn't always apply to this function.
+A more appropriate name for this function would reflect what it does,
+which is copying a string with truncation.
+Some projects call this function
+.BR strtcpy ().
+.P
+This function is not provided by any libc,
+so user-space programmers must implement it themselves.
+.SH SEE ALSO
+.BR strlcpy (3),
+.BR strcpy (3),
+.BR string (3)
