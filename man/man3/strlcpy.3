@@ -1,0 +1,60 @@
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH strlcpy 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+strlcpy, strlcat
+\-
+string return-hypothetical-non-truncated-length copy/catenate (with truncation)
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <string.h>
+.P
+.BR size_t\~strlcpy( size_t\~dsize;
+.BI "               char\~" dst [restrict\~ dsize "], const\~char\~*restrict\~" src ,
+.BI "               size_t\~" dsize );
+.BR size_t\~strlcat( size_t\~dsize;
+.BI "               char\~" dst [restrict\~ dsize "], const\~char\~*restrict\~" src ,
+.BI "               size_t\~" dsize );
+.fi
+.SH DESCRIPTION
+.BR strlcpy ()
+copies the string pointed to by
+.IR src ,
+into a string at the buffer pointed to by
+.IR dst .
+.P
+.BR strlcat ()
+catenates the string pointed to by
+.IR src ,
+after the string pointed to by
+.I dst
+(overwriting its terminating null byte).
+.P
+For both functions,
+if the string doesn't fit in the buffer,
+it is truncated.
+.SH RETURN VALUE
+These functions return the total length of the string they tried to create,
+as if truncation didn't happen.
+.SH STANDARDS
+POSIX.1-2024.
+.SH HISTORY
+OpenBSD 2.4, POSIX.1-2024, glibc 2.38.
+.SH BUGS
+These functions are vulnerable to denial of service (DoS) attacks,
+since they read the entire source string.
+.P
+.BR strscpy (9)
+is a better function for copying with truncation,
+as it doesn't have that issue.
+It's not provided by libc,
+so users should write their own implementation.
+.SH SEE ALSO
+.BR strlcpy (3),
+.BR strcpy (3),
+.BR string (3)
