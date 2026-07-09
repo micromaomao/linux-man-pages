@@ -229,6 +229,7 @@ capability).
 So long as the total number of pages allocated to pipe buffers
 for this user is at this limit,
 individual pipes created by a user will be
+.\" commit 46c4c9d1beb7f5b4cec4dd90e7728720583ee348
 limited to two pages
 (one page before Linux 5.14),
 and attempts to increase a pipe's capacity will be denied.
