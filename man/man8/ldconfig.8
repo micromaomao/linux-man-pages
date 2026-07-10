@@ -187,9 +187,8 @@ the cache is still rebuilt.
 is the run-time linker/loader.
 .TP
 .I /etc/ld.so.conf
-contains a list of directories,
-one per line,
-in which to search for libraries.
+See
+.BR ld.so.conf (5).
 .TP
 .I /etc/ld.so.cache
 contains an ordered list of libraries found in the directories
@@ -199,4 +198,5 @@ as well as those found in the trusted directories.
 .PD
 .SH SEE ALSO
 .BR ldd (1),
-.BR ld.so (8)
+.BR ld.so (8),
+.BR ld.so.conf (5)
