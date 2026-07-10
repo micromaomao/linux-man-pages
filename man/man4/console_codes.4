@@ -760,7 +760,12 @@ Change log file to
 .I name
 (normally disabled by a compile-time option).
 T}
-ESC ] 50 ; \f[I]fn\f[] ST	Set font to \f[I]fn\f[].
+ESC ] 50 ; \f[I]fn\f[] ST	T{
+Set font to \f[I]fn\f[]
+(the escape code is normally disabled;
+see "allowFontOps" in
+.BR xterm (1)).
+T}
 .TE
 .P
 It recognizes the following with slightly modified meaning
