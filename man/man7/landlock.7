@@ -296,8 +296,8 @@ to another process outside the domain.
 .SS Layers of file path access rights
 Each time a thread enforces a ruleset on itself,
 it updates its Landlock domain with a new layer of policy.
-Indeed, this complementary policy is composed with the
-potentially other rulesets already restricting this thread.
+This complementary policy is stacked with any
+other rulesets potentially already restricting this thread.
 A sandboxed thread can then safely add more constraints to itself with a
 new enforced ruleset.
 .P
