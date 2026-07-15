@@ -164,6 +164,7 @@ if (ioctl(epollfd, EPIOCGPARAMS, &params) == \-1) {
 fprintf(stderr, "epoll usecs: %lu\[rs]n", params.busy_poll_usecs);
 fprintf(stderr, "epoll packet budget: %u\[rs]n", params.busy_poll_budget);
 fprintf(stderr, "epoll prefer busy poll: %u\[rs]n", params.prefer_busy_poll);
+.EE
 .SH SEE ALSO
 .BR ioctl (2),
 .BR epoll_create (2),
