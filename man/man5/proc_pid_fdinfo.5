@@ -52,14 +52,14 @@ rather than the current setting of the close-on-exec flag.
 .I mnt_id
 This field, present since Linux 3.15,
 .\" commit 49d063cb353265c3af701bab215ac438ca7df36d
-is the ID of the mount containing this file.
+is the decimal ID of the mount containing this file.
 See the description of
 .IR /proc/ pid /mountinfo .
 .TP
 .I ino
 This field, present since Linux 5.14,
 .\" commit 3845f256a8b527127bfbd4ced21e93d9e89aa6d7
-is the inode number of the file.
+is the decimal inode number of the file.
 .P
 For eventfd file descriptors (see
 .BR eventfd (2)),
