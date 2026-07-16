@@ -24,6 +24,7 @@ For regular files and directories, we see something like:
 pos:    1000
 flags:  01002002
 mnt_id: 21
+ino:    63107
 .EE
 .in
 .P
@@ -54,6 +55,11 @@ This field, present since Linux 3.15,
 is the ID of the mount containing this file.
 See the description of
 .IR /proc/ pid /mountinfo .
+.TP
+.I ino
+This field, present since Linux 5.14,
+.\" commit 3845f256a8b527127bfbd4ced21e93d9e89aa6d7
+is the inode number of the file.
 .P
 For eventfd file descriptors (see
 .BR eventfd (2)),
@@ -63,9 +69,10 @@ the following fields:
 .P
 .in +4n
 .EX
-pos:	0
-flags:	02
-mnt_id:	10
+pos:    0
+flags:  02
+mnt_id: 10
+ino:    63107
 eventfd\-count:               40
 .EE
 .in
@@ -81,9 +88,10 @@ the following fields:
 .P
 .in +4n
 .EX
-pos:	0
-flags:	02
-mnt_id:	10
+pos:    0
+flags:  02
+mnt_id: 10
+ino:    63107
 tfd:        9 events:       19 data: 74253d2500000009
 tfd:        7 events:       19 data: 74253d2500000007
 .EE
@@ -114,10 +122,11 @@ the following fields:
 .P
 .in +4n
 .EX
-pos:	0
-flags:	02
-mnt_id:	10
-sigmask:	0000000000000006
+pos:    0
+flags:  02
+mnt_id: 10
+ino:    63107
+sigmask:        0000000000000006
 .EE
 .in
 .P
@@ -138,9 +147,10 @@ the following fields:
 .P
 .in +4n
 .EX
-pos:	0
-flags:	00
-mnt_id:	11
+pos:    0
+flags:  00
+mnt_id: 11
+ino:    63107
 inotify wd:2 ino:7ef82a sdev:800001 mask:800afff ignored_mask:0 fhandle\-bytes:8 fhandle\-type:1 f_handle:2af87e00220ffd73
 inotify wd:1 ino:192627 sdev:800001 mask:800afff ignored_mask:0 fhandle\-bytes:8 fhandle\-type:1 f_handle:27261900802dfd73
 .EE
@@ -176,9 +186,10 @@ the following fields:
 .P
 .in +4n
 .EX
-pos:	0
-flags:	02
-mnt_id:	11
+pos:    0
+flags:  02
+mnt_id: 11
+ino:    63107
 fanotify flags:0 event\-flags:88002
 fanotify ino:19264f sdev:800001 mflags:0 mask:1 ignored_mask:0 fhandle\-bytes:8 fhandle\-type:1 f_handle:4f261900a82dfd73
 .EE
@@ -232,6 +243,7 @@ the following fields:
 pos:    0
 flags:  02004002
 mnt_id: 13
+ino:    63107
 clockid: 0
 ticks: 0
 settime flags: 03
