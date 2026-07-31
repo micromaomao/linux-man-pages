@@ -5,7 +5,7 @@
 .\"
 .TH string 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-string \- byte operations
+string \- string operations
 .SH LIBRARY
 Standard C library
 .RI ( libc ,\~ \-lc )
@@ -15,84 +15,24 @@ Standard C library
 .B #include <strings.h>
 .fi
 .SH DESCRIPTION
-.SS Write
-.TP
-Write bytes
-.RS
-.TP
-.BR bzero (3)
-.TQ
-.BR memset (3)
-.RE
 .SS Copy
-.TP
-Copy bytes
-.RS
-.TP
-.BR memmove (3)
-.TQ
-.BR memcpy (3)
-.TQ
-.BR mempcpy (3)
-.TQ
-.BR memccpy (3)
-.RE
-.TP
-Copy strings
-.RS
 .TP
 .BR strcpy (3)
 .TQ
 .BR stpcpy (3)
-.RE
-.TP
-Copy nonstrings
-.RS
-.TP
-.BR strncpy (3)
-.RE
 .SS Catenate
 .TP
-Catenate strings
-.RS
-.TP
 .BR strcat (3)
-.RE
-.TP
-Catenate nonstrings
-.RS
-.TP
-.BR strncat (3)
-.RE
 .SS Duplicate
-.TP
-Duplicate strings
-.RS
 .TP
 .BR strdup (3)
 .TQ
 .BR strdupa (3)
-.RE
-.TP
-Duplicate nonstrings
-.RS
-.TP
-.BR strndup (3)
-.TQ
-.BR strndupa (3)
-.RE
 .SS Compare
 .TP
-Compare bytes
-.RS
-.TP
 .BR memeq (3)
-.TQ
-.BR memcmp (3)
-.RE
-.TP
-Compare strings
-.RS
+This function should be in
+.IR <memory.h> .
 .TP
 .BR streq (3)
 .TQ
@@ -103,29 +43,7 @@ Compare strings
 .BR strcoll (3)
 .TQ
 .BR strverscmp (3)
-.RE
-.TP
-Compare nonstrings
-.RS
-.TP
-.BR strncmp (3)
-.TQ
-.BR strncasecmp (3)
-.RE
 .SS Search
-.TP
-Search bytes
-.RS
-.TP
-.BR memchr (3)
-.TQ
-.BR memrchr (3)
-.TQ
-.BR memmem (3)
-.RE
-.TP
-Search strings
-.RS
 .TP
 .BR strlen (3)
 .TQ
@@ -146,18 +64,14 @@ Search strings
 .BR strspn (3)
 .TQ
 .BR strcspn (3)
-.RE
 .SS Separate
-.TP
-Separate strings
-.RS
 .TP
 .BR strsep (3)
 .TQ
 .BR strtok (3)
-.RE
 .SS Others
 .TP
 .BR strxfrm (3)
 .SH SEE ALSO
+.BR memory.h (3head),
 .BR string_copying (7)
