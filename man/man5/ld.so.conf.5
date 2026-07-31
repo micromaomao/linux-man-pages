@@ -9,8 +9,32 @@ ld.so.conf \- ld.so configuration file
 This file contains a list of directories,
 one per line,
 in which to search for libraries.
+.P
+The file is parsed by
+.BR \%ldconfig (8)
+and the results stored in
+.IR /etc/ld.so.cache .
+.P
+The syntax allows lines to start with the keyword
+.B include
+followed by a
+.BR glob (7)
+pattern.
+Files matching that pattern will be processed
+as if their contents were included at that point.
 .SH FILES
 .I /etc/ld.so.conf
+.SH EXAMPLES
+Example config file:
+.P
+.in +4n
+.EX
+/lib
+/usr/lib
+/usr/local/lib
+include /etc/ld.so.conf.d/*.conf
+.EE
+.in
 .SH SEE ALSO
 .BR ld.so (8),
 .BR ldconfig (8)
