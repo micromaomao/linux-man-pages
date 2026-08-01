@@ -52,6 +52,43 @@ Standard C library
 .BR memrchr (3)
 .TQ
 .BR memmem (3)
+.SH STANDARDS
+BSD.
+.P
+These functions are also provided in
+.IR <string.h> ,
+as specified by ISO C.
+This is a historic mistake maintained for compatibility reasons.
+Don't let that fool you;
+these functions don't necessarily operate on strings.
+.SH HISTORY
+SVr1, 4.3BSD.
+.P
+System V (1983)
+introduced an initial set of mem* functions
+in a
+.I <memory.h>
+header file.
+4.3BSD (1986)
+adopted them.
+.P
+C89 didn't standardize this header file
+(without providing any motivation or mentions in the
+.UR https://\:www.open\-std.org/\:jtc1/\:sc22/\:wg14/\:www/\:C89Rationale.pdf
+documented rationale
+.UE ),
+and instead crammed all these functions in
+.IR <string.h> ,
+resulting in confusing programmers
+about the real purpose of these functions.
+.P
+Most C libraries, including the BSDs, glibc, and musl,
+provide
+.I <memory.h>.
+.P
+Illumos and gnulib don't provide it, though,
+and instead use
+.IR <string.h> .
 .SH SEE ALSO
 .BR string (3),
 .BR string_copying (7)
