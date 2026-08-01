@@ -12,7 +12,7 @@ Standard C library
 .RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
-.B #include <string.h>
+.BR #include\~<memory.h> "  // See STANDARDS"
 .P
 .BR "void *memmove(" "size_t n;"
 .BI "              void " dest [ n "], const void " src [ n "], size_t " n );
@@ -56,11 +56,16 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 C11, POSIX.1-2008.
+.P
+ISO C and POSIX declare this function in
+.IR <string.h> ;
+see
+.BR memory.h (3head).
 .SH HISTORY
 POSIX.1-2001, C89, SVr4, 4.3BSD.
 .SH SEE ALSO
+.BR memory.h (3head),
 .BR bcopy (3),
-.BR bstring (3),
 .BR memccpy (3),
 .BR memcpy (3),
 .BR strcpy (3),

@@ -12,7 +12,7 @@ Standard C library
 .RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
-.B #include <string.h>
+.BR #include\~<memory.h> "  // See STANDARDS"
 .P
 .BR "int memcmp(" "size_t n;"
 .BI "           const void " s1 [ n "], const void " s2 [ n "], size_t " n );
@@ -70,6 +70,11 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 C11, POSIX.1-2008.
+.P
+ISO C and POSIX declare this function in
+.IR <string.h> ;
+see
+.BR memory.h (3head).
 .SH HISTORY
 POSIX.1-2001, C89, SVr4, 4.3BSD.
 .SH CAVEATS
@@ -91,7 +96,7 @@ Some operating systems provide such a function (e.g., NetBSD's
 but no such function is specified in POSIX.
 On Linux, you may need to implement such a function yourself.
 .SH SEE ALSO
-.BR bstring (3),
+.BR memory.h (3head),
 .BR strcasecmp (3),
 .BR strcmp (3),
 .BR strcoll (3),

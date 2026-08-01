@@ -14,7 +14,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
-.B #include <string.h>
+.B #include <memory.h>
 .P
 .BR "void *mempcpy(" "size_t n;"
 .BI "              void " dest "[restrict " n "], const void " src "[restrict " n ],
@@ -76,6 +76,10 @@ T}	Thread safety	MT-Safe
 GNU.
 .SH HISTORY
 glibc 2.1.
+.SH NOTES
+The following header also provides
+.BR mempcpy ():
+.IR <string.h> .
 .SH EXAMPLES
 .EX
 void *
@@ -88,6 +92,7 @@ combine(void *o1, size_t s1, void *o2, size_t s2)
 }
 .EE
 .SH SEE ALSO
+.BR memory.h (3head),
 .BR memccpy (3),
 .BR memcpy (3),
 .BR memmove (3),

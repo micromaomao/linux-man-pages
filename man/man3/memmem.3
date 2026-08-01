@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
-.B #include <string.h>
+.B #include <memory.h>
 .P
 .BR "void *memmem(" "size_t hsize, size_t nsize;"
 .BI "             const void " haystack [ hsize "], size_t " hsize ,
@@ -56,6 +56,9 @@ None.
 .SH HISTORY
 musl libc 0.9.7;
 FreeBSD 6.0, OpenBSD 5.4, NetBSD, Illumos.
+.SH NOTES
+The following header also provides this function:
+.IR <string.h> .
 .SH BUGS
 .\" This function was broken in Linux libraries up to and including libc 5.0.9;
 .\" there the
@@ -82,5 +85,5 @@ returns a pointer to the last byte of
 .IR haystack .
 This is fixed in glibc 2.1.
 .SH SEE ALSO
-.BR bstring (3),
+.BR memory.h (3head),
 .BR strstr (3)

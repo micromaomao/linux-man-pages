@@ -16,6 +16,10 @@ Standard C library
 .B #include <string.h>
 .P
 .BI "char *strdupa(const char *" s );
+.P
+.BR "#define _GNU_SOURCE" "  /* See feature_test_macros(7) */"
+.B #include <memory.h>
+.P
 .BR "char *strndupa(" "size_t n;"
 .BI "              const char " s [ n "], size_t " n );
 .fi
@@ -75,7 +79,12 @@ T}	Thread safety	MT-Safe
 GNU.
 .SH HISTORY
 GNU.
+.SH NOTES
+The following header also provides
+.BR strndupa ():
+.IR <string.h> .
 .SH SEE ALSO
+.BR memory.h (3head),
 .BR alloca (3),
 .BR strdup (3),
 .BR strndup (3)

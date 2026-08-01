@@ -12,7 +12,7 @@ Standard C library
 .RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
-.B #include <string.h>
+.BR #include\~<memory.h> "  // See STANDARDS"
 .P
 .BR "void *memset(" "size_t n;"
 .BI "             void " s [ n "], int " c ", size_t " n );
@@ -48,10 +48,15 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 C11, POSIX.1-2008.
+.P
+ISO C and POSIX declare this function in
+.IR <string.h> ;
+see
+.BR memory.h (3head).
 .SH HISTORY
 POSIX.1-2001, C89, SVr4, 4.3BSD.
 .SH SEE ALSO
-.BR bstring (3),
+.BR memory.h (3head),
 .BR bzero (3),
 .BR swab (3),
 .BR wmemset (3)

@@ -15,6 +15,9 @@ Standard C library
 .B #include <strings.h>
 .P
 .BI "int strcasecmp(const char *" s1 ", const char *" s2 );
+.P
+.BR #include\~<memory.h> "  // See STANDARDS"
+.P
 .BI "int strncasecmp(const char " s1 "[], const char " s2 "[], size_t " n );
 .fi
 .SH DESCRIPTION
@@ -70,6 +73,11 @@ T}	Thread safety	MT-Safe locale
 .TE
 .SH STANDARDS
 POSIX.1-2008.
+.P
+POSIX declares both functions in
+.IR <string.h> ;
+see
+.BR memory.h (3head).
 .SH HISTORY
 4.4BSD, POSIX.1-2001.
 .P
@@ -98,6 +106,7 @@ to lowercase and then a byte comparison performed.
 Otherwise, the results are unspecified.
 .RE
 .SH SEE ALSO
+.BR memory.h (3head),
 .BR memcmp (3),
 .BR strcmp (3),
 .BR strcoll (3),

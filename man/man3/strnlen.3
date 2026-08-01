@@ -12,7 +12,7 @@ Standard C library
 .RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
-.B #include <string.h>
+.BR #include\~<memory.h> "  // See STANDARDS"
 .P
 .BR "size_t strnlen(const char " s "[], size_t " maxlen );
 .fi
@@ -83,7 +83,13 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 POSIX.1-2008.
+.P
+ISO C and POSIX declare this function in
+.IR <string.h> ;
+see
+.BR memory.h (3head).
 .SH HISTORY
 POSIX.1-2008.
 .SH SEE ALSO
+.BR memory.h (3head),
 .BR strlen (3)

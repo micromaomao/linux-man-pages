@@ -13,7 +13,7 @@ Standard C library
 .RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
-.B #include <string.h>
+.BR #include\~<memory.h> "  // See STANDARDS"
 .P
 .BR "void *memcpy(" "size_t n;"
 .BI "             void " dest "[restrict " n "], const void " src "[restrict " n ],
@@ -53,6 +53,11 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 C11, POSIX.1-2008.
+.P
+ISO C and POSIX declare this function in
+.IR <string.h> ;
+see
+.BR memory.h (3head).
 .SH HISTORY
 POSIX.1-2001, C89, SVr4, 4.3BSD.
 .SH CAVEATS
@@ -98,8 +103,8 @@ implementation that safely handles the overlapping buffers case
 implementation that was aliased to
 .BR memmove (3)).
 .SH SEE ALSO
+.BR memory.h (3head),
 .BR bcopy (3),
-.BR bstring (3),
 .BR memccpy (3),
 .BR memmove (3),
 .BR mempcpy (3),
