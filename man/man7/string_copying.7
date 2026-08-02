@@ -584,17 +584,6 @@ either truncating or non-truncating.
 Calling a non-truncating function after a truncating one is necessarily wrong.
 .\" ----- BUGS :: -----------------------------------------------------/
 .SH BUGS
-All catenation functions share the same performance problem:
-.UR https:\://www.joelonsoftware.com/\:2001/12/11/\:back\-to\-basics/
-Shlemiel the painter
-.UE .
-As a mitigation,
-compilers are able to transform some calls to catenation functions
-into normal copy functions,
-since
-.I strlen(dst)
-is usually a byproduct of the previous copy.
-.P
 .BR strlcpy (3)
 and
 .BR strlcat (3)
