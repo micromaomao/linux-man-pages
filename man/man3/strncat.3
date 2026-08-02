@@ -65,9 +65,12 @@ see
 .SH HISTORY
 POSIX.1-2001, C89, SVr4, 4.3BSD.
 .SH CAVEATS
-The name of this function is confusing;
-it has no relation to
+The name of this function is confusing:
+.IP \[bu] 3
+It has no relation to
 .BR strncpy (3).
+.IP \[bu]
+It doesn't truncate the input nonstring.
 .P
 If the destination buffer does not already contain a string,
 or is not large enough,
