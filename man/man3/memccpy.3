@@ -74,6 +74,14 @@ see
 .BR memory.h (3head).
 .SH HISTORY
 POSIX.1-2001, SVr4, 4.3BSD.
+.SH CAVEATS
+This function has recently (since C23)
+started being misused for copying strings with truncation.
+That's not its intended use,
+and is most likely to result in bugs if used for that.
+This function was designed for
+the quite different (and niche) task of implementing
+.BR fgets (3).
 .SH SEE ALSO
 .BR memory.h (3head),
 .BR bcopy (3),
