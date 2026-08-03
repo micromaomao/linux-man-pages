@@ -139,11 +139,6 @@ from a character sequence that just fits the destination buffer;
 truncation should be detected by
 comparing the length of the input string
 with the size of the destination buffer.
-.P
-If you're going to use this function in chained calls,
-it would be useful to develop a similar function that accepts
-a pointer to the end (one after the last element) of the destination buffer
-instead of its size.
 .SH EXAMPLES
 .\" SRC BEGIN (stpncpy.c)
 .EX
