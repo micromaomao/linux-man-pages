@@ -82,12 +82,12 @@ and instead crammed all these functions in
 resulting in confusing programmers
 about the real purpose of these functions.
 .P
-Most C libraries, including the BSDs, glibc, and musl,
+Most C libraries, including the BSDs, glibc, musl, Bionic, and Illumos
 provide
 .I <memory.h>.
 .P
-Illumos and gnulib don't provide it, though,
-and instead use
+gnulib doesn't provide it, though,
+and instead uses
 .IR <string.h> .
 .SH SEE ALSO
 .BR string (3),
