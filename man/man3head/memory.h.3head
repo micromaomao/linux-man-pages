@@ -52,6 +52,13 @@ Standard C library
 .BR memrchr (3)
 .TQ
 .BR memmem (3)
+.SH VERSIONS
+In some systems (Illumos),
+.I <memory.h>
+contains only a few of these functions,
+and thus
+.I <string.h>
+is needed.
 .SH STANDARDS
 BSD.
 .P
