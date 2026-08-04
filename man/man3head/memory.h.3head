@@ -79,18 +79,26 @@ header file.
 4.3BSD (1986)
 adopted them.
 .P
+SVID Issue 1 (1985) standardized this header file,
+but stated that the functions would be moved to
+.IR <string.h> .
+.P
+XPG Issue 3 (1989) listed
+.I <memory.h>
+as WITHDRAWN,
+and stated that the functions had been moved to
+.IR <string.h> .
+.P
 C89 didn't standardize this header file
-(without providing any motivation or mentions in the
-.UR https://\:www.open\-std.org/\:jtc1/\:sc22/\:wg14/\:www/\:C89Rationale.pdf
-documented rationale
-.UE ),
-and instead crammed all these functions in
-.IR <string.h> ,
-resulting in confusing programmers
+and instead specified all these functions in
+.IR <string.h> .
+.P
+This merge of header files
+has historically confused programmers
 about the real purpose of these functions.
 .P
 Most C libraries, including the BSDs, glibc, musl, Bionic, and Illumos
-provide
+continue to provide
 .I <memory.h>.
 .P
 gnulib doesn't provide it, though,
