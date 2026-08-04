@@ -17,7 +17,7 @@ Standard C library
 .P
 .BI "int strcmp(const char *" s1 ", const char *" s2 );
 .P
-.BR #include\~<memory.h> "  // See STANDARDS"
+.BR #include\~<string.h> "  // or <memory.h>; see memory.h(3head)"
 .P
 .BR "int strncmp(const char " s1 "[], const char " s2 "[], size_t " n );
 .fi
@@ -110,11 +110,6 @@ from the last compared byte in
 (If the two characters are equal, this difference is 0.)
 .SH STANDARDS
 C11, POSIX.1-2008.
-.P
-ISO C and POSIX declare both functions in
-.IR <string.h> ;
-see
-.BR memory.h (3head).
 .SH HISTORY
 POSIX.1-2001, C89, SVr4, 4.3BSD.
 .SH EXAMPLES

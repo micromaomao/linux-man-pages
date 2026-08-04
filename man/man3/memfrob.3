@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
-.B #include <memory.h>
+.BR #include\~<memory.h> "  // or <string.h>; see memory.h(3head)"
 .P
 .BR "void *memfrob(" "size_t n;"
 .BI "              void " s [ n "], size_t " n );
@@ -55,9 +55,6 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 GNU.
-.SH NOTES
-The following header also provides this function:
-.IR <string.h> .
 .SH SEE ALSO
 .BR memory.h (3head),
 .BR strfry (3)

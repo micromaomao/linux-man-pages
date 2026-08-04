@@ -16,7 +16,7 @@ Standard C library
 .P
 .BI "char *strdup(const char *" s );
 .P
-.BR #include\~<memory.h> "  // See STANDARDS"
+.BR #include\~<string.h> "  // or <memory.h>; see memory.h(3head)"
 .P
 .BR "char *strndup(" "size_t n;"
 .BI "              const char " s [ n "], size_t " n );
@@ -95,11 +95,6 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 POSIX.1-2008.
-.P
-POSIX declares both functions in
-.IR <string.h> ;
-see
-.BR memory.h (3head).
 .SH HISTORY
 .TP
 .BR strdup ()

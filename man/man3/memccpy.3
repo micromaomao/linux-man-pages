@@ -12,7 +12,7 @@ Standard C library
 .RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
-.BR #include\~<memory.h> "  // See STANDARDS"
+.BR #include\~<string.h> "  // or <memory.h>; see memory.h(3head)"
 .P
 .BR "void *memccpy(" "size_t n;"
 .BI "              void " dest "[restrict " n "], const void " src "[restrict " n ],
@@ -67,11 +67,6 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 POSIX.1-2008.
-.P
-ISO C and POSIX declare this function in
-.IR <string.h> ;
-see
-.BR memory.h (3head).
 .SH HISTORY
 POSIX.1-2001, SVr4, 4.3BSD.
 .SH CAVEATS

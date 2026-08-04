@@ -14,7 +14,7 @@ Standard C library
 .RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
-.BR #include\~<memory.h> "  // See STANDARDS"
+.BR #include\~<string.h> "  // or <memory.h>; see memory.h(3head)"
 .P
 .BR "char *strncpy(" "size_t dsize;"
 .BI "              char " dst "[restrict " dsize "], const char *restrict " src ,
@@ -97,19 +97,9 @@ T}	Thread safety	MT-Safe
 .TP
 .BR strncpy ()
 C11, POSIX.1-2008.
-.IP
-ISO C and POSIX declare this function in
-.IR <string.h> ;
-see
-.BR memory.h (3head).
 .TP
 .BR stpncpy ()
 POSIX.1-2008.
-.IP
-POSIX declares this function in
-.IR <string.h> ;
-see
-.BR memory.h (3head).
 .SH HISTORY
 .TP
 .BR strncpy ()
