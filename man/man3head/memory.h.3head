@@ -66,7 +66,7 @@ These functions are also provided in
 .IR <string.h> ,
 as specified by ISO C.
 This is a historic mistake maintained for compatibility reasons;
-these functions don't necessarily operate on strings.
+these functions don't always operate on strings.
 .SH HISTORY
 SVr1, 4.3BSD.
 .P
