@@ -125,6 +125,8 @@ See also
 		<https://software.opensuse.org/package/man-pages>
 
    Related projects
+	Bionic libc
+		<https://android.googlesource.com/platform/bionic>
 	Debian manpages-l10n
 		<https://manpages-l10n-team.pages.debian.net/manpages-l10n/>
 	GNU C Library (glibc)
