@@ -1,0 +1,144 @@
+.TH tunables.conf 5 (date) "Linux man-pages (unreleased)"
+.SH NAME
+tunables.conf \- tunables configuration file
+.SH SYNOPSIS
+.nf
+.B /etc/tunables.conf
+.fi
+.SH DESCRIPTION
+Tunables are a feature in the GNU C Library
+that allows application authors and distribution maintainers
+to alter the runtime library behavior to match their workload.
+For a list of supported tunables,
+please consult the glibc manual
+that corresponds to your installed version of glibc,
+or run the following command:
+.P
+.in +4n
+.EX
+ld.so \-\-list\-tunables
+.EE
+.P
+The file is parsed by
+.BR \%ldconfig (8)
+and the results stored in
+.IR /etc/ld.so.cache .
+The resulting data is read when the program starts execution.
+.P
+Each line in the file
+.I /etc/tunables.conf
+specifies a tunable,
+which is specified with a string of the form
+.IB name = value \f[R].\f[]
+.P
+The syntax allows lines to start with the keyword
+.B include
+followed by a
+.BR \%glob (7)
+pattern.
+Files matching that pattern will be processed
+as if their contents were included at that point.
+.P
+Each line may include zero or more keywords or symbols at the beginning,
+which affect how each tunable affects each processes.
+The keywords must be separated by whitespace,
+but the symbols need not be.
+.TP
+.B overridable
+.TQ
+.B +
+Allow the tunable to be overridden by the
+.B GLIBC_TUNABLES
+environment variable when the process runs
+(this is the default).
+.TP
+.B nonoverridable
+.TQ
+.B \-
+Do not allow the tunable to be overridden by the environment variable.
+.TP
+.B onlysecure
+.TQ
+.B @
+The tunable applies only to
+.B AT_SECURE
+processes,
+such as one started from a set-user-ID program,
+or one with elevated capabilities.
+.TP
+.B nonsecure
+.TQ
+.B $
+The tunable applies only to
+.RB non- AT_SECURE
+processes (this is the default).
+.TP
+.B anysecure
+.TQ
+.B *
+The tunable applies to both
+.B AT_SECURE
+and
+.RB non- AT_SECURE
+processes.
+.P
+The file may also contain
+.IR filters ,
+which limit the tunables following it.
+The effects of a filter are terminated by
+any of the following:
+.IP \[bu] 3
+The end of the file.
+.PD 0
+.IP \[bu]
+The end of an included file.
+.IP \[bu]
+An
+.B include
+directive.
+.IP \[bu]
+A new (possibly empty) filter.
+.PD
+.P
+The syntax is:
+.P
+.in +4n
+.EX
+.BI [ filter : pattern ]
+.EE
+.in
+.TP
+.B proc
+The
+.B proc
+filter limits the following tunables to processes
+whose name matches the pattern.
+The pattern may be an absolute path
+or just the base name.
+.P
+A filter can also be empty:
+.BR [] .
+Such a filter has no effects.
+.SH FILES
+.TP
+.I /etc/tunables.conf
+.TP
+.I /etc/ld.so.cache
+cached copy of tunables
+.SH EXAMPLES
+Example configuration file:
+.P
+.in +4n
+.EX
+glibc.malloc.arenas_max=5
+onlysecure glibc.malloc.arenas_max=1
+\-glibc.pthread.rseq=1
+[proc:/bin/bad.program]
+\-glibc.pthread.rseq=0
+[proc:some.program]
+\-glibc.malloc.mmap_threshold=65536
+.EE
+.in
+.SH SEE ALSO
+.BR ld.so (8),
+.BR ldconfig (8)
