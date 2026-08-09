@@ -7,7 +7,7 @@
 .\"
 .TH strcmp 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-strcmp, strncmp \- strings compare
+strcmp \- strings compare
 .SH LIBRARY
 Standard C library
 .RI ( libc ,\~ \-lc )
@@ -16,14 +16,8 @@ Standard C library
 .B #include <string.h>
 .P
 .BI "int strcmp(const char *" s1 ", const char *" s2 );
-.P
-.BR #include\~<string.h> "  // see memory.h(3head)"
-.P
-.BR "int strncmp(const char " s1 "[], const char " s2 "[], size_t " n );
 .fi
 .SH DESCRIPTION
-.TP
-.BR strcmp ()
 The
 .BR strcmp ()
 function compares the two strings
@@ -32,49 +26,20 @@ and
 .IR s2 ,
 as if by calling
 .BR memcmp (3).
-.IP
+.P
 The locale is not taken into account (for a locale-aware comparison, see
 .BR strcoll (3)).
-.IP
+.P
 It is equivalent to
-.IP
+.P
 .in +4n
 .EX
 memcmp(s1, s2, MIN(strlen(s1),strlen(s2))+1)
 .EE
 .in
-.TP
-.BR strncmp ()
-The
-.BR strncmp ()
-function is similar, except it compares
-only the first (at most)
-.I n
-bytes of
-.I s1
-and
-.IR s2 .
-.IP
-It is equivalent to
-.IP
-.in +4n
-.EX
-memcmp(s1, s2, MIN(MIN(strnlen(s1,n),strnlen(s2,n))+1, n))
-.EE
-.in
 .SH RETURN VALUE
-The
-.BR strcmp ()
-and
-.BR strncmp ()
-functions return an integer
-less than, equal to, or greater than zero if
-.I s1
-(or the first
-.I n
-bytes thereof) is found, respectively, to be less than, to
-match, or be greater than
-.IR s2 .
+See
+.BR memcmp (3).
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -86,8 +51,7 @@ Interface	Attribute	Value
 T{
 .na
 .nh
-.BR strcmp (),
-.BR strncmp ()
+.BR strcmp ()
 T}	Thread safety	MT-Safe
 .TE
 .SH VERSIONS
@@ -114,24 +78,19 @@ C11, POSIX.1-2008.
 POSIX.1-2001, C89, SVr4, 4.3BSD.
 .SH EXAMPLES
 The program below can be used to demonstrate the operation of
-.BR strcmp ()
-(when given two arguments) and
-.BR strncmp ()
-(when given three arguments).
-First, some examples using
-.BR strcmp ():
+.BR strcmp ().
 .P
 .in +4n
 .EX
-.RB $ " ./string_comp ABC ABC" ;
+.RB $ " ./strcmp ABC ABC" ;
 <str1> and <str2> are equal
-.RB $ " ./string_comp ABC AB" ";      # \[aq]C\[aq] is ASCII 67; \[aq]C\[aq] \- \[aq]\[rs]0\[aq] = 67"
+.RB $ " ./strcmp ABC AB" ";      # \[aq]C\[aq] is ASCII 67; \[aq]C\[aq] \- \[aq]\[rs]0\[aq] = 67"
 <str1> is greater than <str2> (67)
-.RB $ " ./string_comp ABA ABZ" ";     # \[aq]A\[aq] is ASCII 65; \[aq]Z\[aq] is ASCII 90"
+.RB $ " ./strcmp ABA ABZ" ";     # \[aq]A\[aq] is ASCII 65; \[aq]Z\[aq] is ASCII 90"
 <str1> is less than <str2> (\-25)
-.RB $ " ./string_comp ABJ ABC" ;
+.RB $ " ./strcmp ABJ ABC" ;
 <str1> is greater than <str2> (7)
-.RB $ " ./string_comp $\[aq]\[rs]201\[aq] A" ";   # 0201 \- 0101 = 0100 (or 64 decimal)"
+.RB $ " ./strcmp $\[aq]\[rs]201\[aq] A" ";   # 0201 \- 0101 = 0100 (or 64 decimal)"
 <str1> is greater than <str2> (64)
 .EE
 .in
@@ -141,26 +100,13 @@ The last example uses
 syntax to produce a string containing an 8-bit ASCII code;
 the result demonstrates that the string comparison uses unsigned
 characters.
-.P
-And then some examples using
-.BR strncmp ():
-.P
-.in +4n
-.EX
-.RB $ " ./string_comp ABC AB 3" ;
-<str1> is greater than <str2> (67)
-.RB $ " ./string_comp ABC AB 2" ;
-<str1> and <str2> are equal in the first 2 bytes
-.EE
-.in
 .SS Program source
 \&
-.\" SRC BEGIN (string_comp.c)
+.\" SRC BEGIN (strcmp.c)
 .EX
-/* string_comp.c
+// strcmp.c
+// Licensed under GNU General Public License v2 or later.
 \&
-   Licensed under GNU General Public License v2 or later.
-*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -170,20 +116,15 @@ main(int argc, char *argv[])
 {
     int res;
 \&
-    if (argc < 3) {
-        fprintf(stderr, "Usage: %s <str1> <str2> [<n>]\[rs]n", argv[0]);
+    if (argc != 3) {
+        fprintf(stderr, "Usage: %s <str1> <str2>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
-    if (argc == 3)
-        res = strcmp(argv[1], argv[2]);
-    else
-        res = strncmp(argv[1], argv[2], atoi(argv[3]));
+    res = strcmp(argv[1], argv[2]);
 \&
     if (res == 0) {
         printf("<str1> and <str2> are equal");
-        if (argc > 3)
-            printf(" in the first %d bytes\[rs]n", atoi(argv[3]));
         printf("\[rs]n");
     } else if (res < 0) {
         printf("<str1> is less than <str2> (%d)\[rs]n", res);
@@ -196,14 +137,10 @@ main(int argc, char *argv[])
 .EE
 .\" SRC END
 .SH SEE ALSO
-.BR memory.h (3head),
 .BR memcmp (3),
 .BR strcasecmp (3),
 .BR strcoll (3),
 .BR streq (3),
 .BR string (3),
-.BR strncasecmp (3),
 .BR strverscmp (3),
-.BR wcscmp (3),
-.BR wcsncmp (3),
-.BR ascii (7)
+.BR wcscmp (3)

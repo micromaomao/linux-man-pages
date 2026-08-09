@@ -1,1 +1,114 @@
-.so man3/strcmp.3
+'\" t
+.\" Copyright 1993, David Metcalfe <david@prism.demon.co.uk>
+.\" Copyright 2020, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH strncmp 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+strncmp \- nonstrings compare
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.BR #include\~<string.h> "  // see memory.h(3head)"
+.P
+.BR "int strncmp(const char " s1 "[], const char " s2 "[], size_t " n );
+.fi
+.SH DESCRIPTION
+The
+.BR strncmp ()
+function is similar to
+.BR strcmp (3),
+except it compares
+only the first (at most)
+.I n
+bytes of
+.I s1
+and
+.IR s2 .
+.P
+It is equivalent to
+.P
+.in +4n
+.EX
+memcmp(s1, s2, MIN(MIN(strnlen(s1,n),strnlen(s2,n))+1, n))
+.EE
+.in
+.SH RETURN VALUE
+See
+.BR memcmp (3).
+.SH ATTRIBUTES
+For an explanation of the terms used in this section, see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR strncmp ()
+T}	Thread safety	MT-Safe
+.TE
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C89, SVr4, 4.3BSD.
+.SH EXAMPLES
+The program below can be used to demonstrate the operation of
+.BR strncmp ().
+.P
+.in +4n
+.EX
+.RB $ " ./strncmp ABC AB 3" ;
+<strn1> is greater than <strn2> (67)
+.RB $ " ./strncmp ABC AB 2" ;
+<strn1> and <str2> are equal in the first 2 bytes
+.EE
+.in
+.SS Program source
+\&
+.\" SRC BEGIN (strncmp.c)
+.EX
+// strncmp.c
+// Licensed under GNU General Public License v2 or later.
+\&
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+\&
+int
+main(int argc, char *argv[])
+{
+    int res;
+\&
+    if (argc != 4) {
+        fprintf(stderr, "Usage: %s <strn1> <strn2> <n>\[rs]n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+\&
+    res = strncmp(argv[1], argv[2], atoi(argv[3]));
+\&
+    if (res == 0) {
+        printf("<strn1> and <strn2> are equal");
+        printf(" in the first %d bytes\[rs]n", atoi(argv[3]));
+        printf("\[rs]n");
+    } else if (res < 0) {
+        printf("<strn1> is less than <strn2> (%d)\[rs]n", res);
+    } else {
+        printf("<strn1> is greater than <strn2> (%d)\[rs]n", res);
+    }
+\&
+    exit(EXIT_SUCCESS);
+}
+.EE
+.\" SRC END
+.SH SEE ALSO
+.BR memory.h (3head),
+.BR memcmp (3),
+.BR strncasecmp (3),
+.BR wcsncmp (3)
