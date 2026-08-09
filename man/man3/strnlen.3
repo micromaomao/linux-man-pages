@@ -14,7 +14,7 @@ Standard C library
 .nf
 .BR #include\~<string.h> "  // see memory.h(3head)"
 .P
-.BR "size_t strnlen(const char " s "[], size_t " maxlen );
+.BR "size_t strnlen(const char " strn "[], size_t " n );
 .fi
 .P
 .RS -4
@@ -32,41 +32,21 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 The
 .BR strnlen ()
-function returns the number of bytes in the string
+determines the length of the nonstring
 pointed to by
-.IR s ,
-excluding the terminating null byte (\[aq]\[rs]0\[aq]),
-but at most
-.IR maxlen .
-In doing this,
-.BR strnlen ()
-looks only at the first
-.I maxlen
-characters in the string pointed to by
-.I s
-and never beyond
-.IR s[maxlen\-1] .
+.IR strn .
 .P
 It is equivalent to
 .P
 .in +4n
 .EX
-(memchr(s, \[aq]\[rs]0\[aq], maxlen) ?: s + maxlen) - s
+(memchr(strn, \[aq]\[rs]0\[aq], n) ?: strn + n) - strn
 .EE
 .in
 .SH RETURN VALUE
 The
 .BR strnlen ()
-function returns
-.IR strlen(s) ,
-if that is less than
-.IR maxlen ,
-or
-.I maxlen
-if there is no null terminating (\[aq]\[rs]0\[aq]) among the first
-.I maxlen
-characters pointed to by
-.IR s .
+function returns the number of nonnull characters in the input array.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -86,5 +66,4 @@ POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2008.
 .SH SEE ALSO
-.BR memory.h (3head),
-.BR strlen (3)
+.BR memory.h (3head)
