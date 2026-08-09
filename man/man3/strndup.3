@@ -1,1 +1,81 @@
-.so man3/strdup.3
+'\" t
+.\" Copyright 1993, David Metcalfe <david@prism.demon.co.uk>
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH strndup 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+strndup \- nonstring duplicate
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.BR #include\~<string.h> "  // see memory.h(3head)"
+.P
+.BR "char *strndup(" "size_t n;"
+.BI "              const char " s [ n "], size_t " n );
+.fi
+.P
+.RS -4
+Feature Test Macro Requirements for glibc (see
+.BR feature_test_macros (7)):
+.RE
+.P
+.BR strndup ():
+.nf
+    Since glibc 2.10:
+        _POSIX_C_SOURCE >= 200809L
+    Before glibc 2.10:
+        _GNU_SOURCE
+.fi
+.SH DESCRIPTION
+The
+.BR strndup ()
+function is similar to
+.BR strndup (3),
+but copies at most
+.I n
+bytes.
+If
+.I s
+is longer than
+.IR n ,
+only
+.I n
+bytes are copied, and a terminating null byte (\[aq]\[rs]0\[aq]) is added.
+.SH RETURN VALUE
+On success, the
+.BR strndup ()
+function returns a pointer to the duplicated
+string.
+It returns NULL if insufficient memory was available, with
+.I errno
+set to indicate the error.
+.SH ERRORS
+.TP
+.B ENOMEM
+Insufficient memory available to allocate duplicate string.
+.SH ATTRIBUTES
+For an explanation of the terms used in this section, see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR strndup ()
+T}	Thread safety	MT-Safe
+.TE
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2008.
+.SH SEE ALSO
+.BR memory.h (3head),
+.BR malloc (3),
+.BR strndupa (3)
