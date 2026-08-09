@@ -6,7 +6,7 @@
 .\"
 .TH strcasecmp 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-strcasecmp, strncasecmp \- strings case-insensitive compare
+strcasecmp \- strings case-insensitive compare
 .SH LIBRARY
 Standard C library
 .RI ( libc ,\~ \-lc )
@@ -15,10 +15,6 @@ Standard C library
 .B #include <strings.h>
 .P
 .BI "int strcasecmp(const char *" s1 ", const char *" s2 );
-.P
-.BR #include\~<string.h> "  // see memory.h(3head)"
-.P
-.BI "int strncasecmp(const char " s1 "[], const char " s2 "[], size_t " n );
 .fi
 .SH DESCRIPTION
 The
@@ -34,22 +30,10 @@ less than, equal to, or greater than zero if
 is found,
 respectively, to be less than, to match, or be greater than
 .IR s2 .
-.P
-The
-.BR strncasecmp ()
-function is similar, except that it compares
-no more than
-.I n
-bytes of
-.I s1
-and
-.IR s2 .
 .SH RETURN VALUE
 The
 .BR strcasecmp ()
-and
-.BR strncasecmp ()
-functions return
+function returns
 an integer less than, equal to, or greater than zero if
 .I s1
 is, after ignoring case, found to be
@@ -67,8 +51,7 @@ Interface	Attribute	Value
 T{
 .na
 .nh
-.BR strcasecmp (),
-.BR strncasecmp ()
+.BR strcasecmp ()
 T}	Thread safety	MT-Safe locale
 .TE
 .SH STANDARDS
@@ -76,21 +59,18 @@ POSIX.1-2008.
 .SH HISTORY
 4.4BSD, POSIX.1-2001.
 .P
-The
 .BR strcasecmp ()
-and
-.BR strncasecmp ()
-functions first appeared in 4.4BSD, where they were declared in
+first appeared in 4.4BSD, where it was declared in
 .IR <string.h> .
 Thus, for reasons of historical compatibility, the glibc
 .I <string.h>
-header file also declares these functions, if the
+header file also declares this function, if the
 .B _DEFAULT_SOURCE
 (or, in glibc 2.19 and earlier,
 .BR _BSD_SOURCE )
 feature test macro is defined.
 .P
-The POSIX.1-2008 standard says of these functions:
+The POSIX.1-2008 standard says of this function:
 .P
 .RS
 When the
@@ -101,11 +81,6 @@ to lowercase and then a byte comparison performed.
 Otherwise, the results are unspecified.
 .RE
 .SH SEE ALSO
-.BR memory.h (3head),
-.BR memcmp (3),
 .BR strcmp (3),
-.BR strcoll (3),
 .BR string (3),
-.BR strncmp (3),
-.BR wcscasecmp (3),
-.BR wcsncasecmp (3)
+.BR wcscasecmp (3)
