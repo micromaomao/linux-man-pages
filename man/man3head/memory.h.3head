@@ -40,6 +40,8 @@ Standard C library
 .BR strndupa (3)
 .SS Compare
 .TP
+.BR memeq (3)
+.TQ
 .BR memcmp (3)
 .TQ
 .BR strncmp (3)
