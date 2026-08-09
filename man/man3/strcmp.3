@@ -54,24 +54,6 @@ T{
 .BR strcmp ()
 T}	Thread safety	MT-Safe
 .TE
-.SH VERSIONS
-POSIX.1 specifies only that:
-.RS
-.P
-The sign of a nonzero return value shall be determined by the sign
-of the difference between the values of the first pair of bytes
-(both interpreted as type
-.IR "unsigned char" )
-that differ in the strings being compared.
-.RE
-.P
-In glibc, as in most other implementations,
-the return value is the arithmetic result of subtracting
-the last compared byte in
-.I s2
-from the last compared byte in
-.IR s1 .
-(If the two characters are equal, this difference is 0.)
 .SH STANDARDS
 C11, POSIX.1-2008.
 .SH HISTORY
