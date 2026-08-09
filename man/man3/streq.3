@@ -22,11 +22,12 @@ and
 .I s2
 are equal.
 .P
-It is equivalent to
+It is equivalent to both of the following expressions:
 .P
 .in +4n
 .EX
 strcmp(s1, s2) == 0
+memeq(s1, s2, MIN(strlen(s1),strlen(s2))+1)
 .EE
 .in
 .SH RETURN VALUE
