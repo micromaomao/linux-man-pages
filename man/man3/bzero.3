@@ -53,6 +53,12 @@ None.
 .P
 Marked as LEGACY in POSIX.1-2001.
 Removed in POSIX.1-2008.
+.SH CAVEATS
+If the compiler deduces that the operation is unnecessary,
+it may totally or partially remove the call.
+To ensure the zeroing happens regardless of optimizations,
+use
+.BR explicit_bzero (3).
 .SH SEE ALSO
 .BR bstring (3),
 .BR memory.h (3head),
