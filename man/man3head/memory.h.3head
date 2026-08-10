@@ -18,6 +18,8 @@ Standard C library
 .TP
 .BR bzero (3)
 .TQ
+.BR explicit_bzero (3)
+.TQ
 .BR memset (3)
 .SS Copy
 .TP
