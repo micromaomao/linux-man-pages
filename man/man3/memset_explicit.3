@@ -1,0 +1,54 @@
+'\" t
+.\" Copyright 2017, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH memset_explicit 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+memset_explicit \- memory set explicit
+.SH LIBRARY
+None.
+.P
+.I It is not yet implemented in glibc.
+.SH SYNOPSIS
+.nf
+.BR #include\~<string.h> "  // see memory.h(3head)"
+.P
+.BR "void *memset_explicit(" "size_t n;"
+.BI "                      void " a [ n "], int " c ", size_t " n );
+.fi
+.SH DESCRIPTION
+This function is similar to
+.BR memset (3),
+but guarantees that
+compiler optimizations will not remove the
+erase operation if the compiler deduces that the operation is "unnecessary".
+.SH RETURN VALUE
+See
+.BR memset (3).
+.SH ATTRIBUTES
+For an explanation of the terms used in this section, see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR memset_explicit ()
+T}	Thread safety	MT-Safe
+.TE
+.SH STANDARDS
+C23.
+.SH HISTORY
+C23.
+.SH CAVEATS
+See
+.BR explicit_bzero (3).
+.SH SEE ALSO
+.BR bstring (3),
+.BR memory.h (3head),
+.BR explicit_bzero (3)
