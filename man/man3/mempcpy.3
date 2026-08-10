@@ -21,23 +21,18 @@ Standard C library
 .BI "              size_t " n );
 .fi
 .SH DESCRIPTION
-The
-.BR mempcpy ()
-function is nearly identical to the
-.BR memcpy (3)
-function.
-It copies
-.I n
-bytes from the object beginning at
-.I src
-into the object pointed to by
-.IR dest .
-But instead of returning the value of
-.I dest
-it returns a pointer to the byte following the last written byte.
+This function is similar to
+.BR memcpy (3),
+but it returns a pointer to
+one past the last written byte.
 .P
-This function is useful in situations where a number of objects
-shall be copied to consecutive memory positions.
+It is equivalent to
+.P
+.in +4n
+.EX
+memcpy(dest, src, n) + n
+.EE
+.in
 .SH RETURN VALUE
 .I dest
 +
