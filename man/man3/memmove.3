@@ -18,28 +18,12 @@ Standard C library
 .BI "              void " dest [ n "], const void " src [ n "], size_t " n );
 .fi
 .SH DESCRIPTION
-The
-.BR memmove ()
-function copies
-.I n
-bytes from memory area
-.I src
-to memory area
-.IR dest .
-The memory areas may overlap: copying takes place as though
-the bytes in
-.I src
-are first copied into a temporary array that does not overlap
-.I src
-or
-.IR dest ,
-and the bytes are then copied from the temporary array to
-.IR dest .
+This function is similar to
+.BR memcpy (3),
+but the memory areas may overlap.
 .SH RETURN VALUE
-The
-.BR memmove ()
-function returns a pointer to
-.IR dest .
+See
+.BR memcpy (3).
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
