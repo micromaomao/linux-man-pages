@@ -34,6 +34,8 @@ Standard C library
 .BR memccpy (3)
 .TQ
 .BR strncpy (3)
+.TQ
+.BR stpncpy (3)
 .SS Catenate
 .TP
 .BR strncat (3)
