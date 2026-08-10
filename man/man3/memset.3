@@ -50,6 +50,12 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, C89, SVr4, 4.3BSD.
+.SH CAVEATS
+If the compiler deduces that the operation is unnecessary,
+it may totally or partially remove the call.
+To ensure the setting happens regardless of optimizations,
+use
+.BR memset_explicit (3).
 .SH SEE ALSO
 .BR memory.h (3head),
 .BR bzero (3),
