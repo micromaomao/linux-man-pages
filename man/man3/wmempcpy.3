@@ -25,6 +25,14 @@ The
 .BR wmempcpy ()
 is the wide-character equivalent of
 .BR mempcpy (3).
+.P
+It is equivalent to
+.P
+.in +4n
+.EX
+wmemcpy(dest, src, n) + n
+.EE
+.in
 .SH RETURN VALUE
 See
 .BR mempcpy (3).
