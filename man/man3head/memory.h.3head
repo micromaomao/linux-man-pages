@@ -21,6 +21,8 @@ Standard C library
 .BR explicit_bzero (3)
 .TQ
 .BR memset (3)
+.TQ
+.BR memset_explicit (3)
 .SS Copy
 .TP
 .BR memmove (3)
