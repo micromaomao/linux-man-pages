@@ -15,7 +15,7 @@ Standard C library
 .BR #include\~<string.h> "  // see memory.h(3head)"
 .P
 .BR "void *memset(" "size_t n;"
-.BI "             void " s [ n "], int " c ", size_t " n );
+.BI "             void " a [ n "], int " c ", size_t " n );
 .fi
 .SH DESCRIPTION
 The
@@ -24,14 +24,14 @@ function fills the first
 .I n
 bytes of the
 memory area pointed to by
-.I s
+.I a
 with the constant byte
 .IR c .
 .SH RETURN VALUE
 The
 .BR memset ()
 function returns a pointer to the memory area
-.IR s .
+.IR a .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
