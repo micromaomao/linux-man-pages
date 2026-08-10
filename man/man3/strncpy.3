@@ -1,1 +1,96 @@
-.so man3/stpncpy.3
+'\" t
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH strncpy 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+strncpy \- nonstring copy
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.BR #include\~<string.h> "  // see memory.h(3head)"
+.P
+.BR "char *strncpy(" "size_t dsize;"
+.BI "              char " dst "[restrict " dsize "], const char *restrict " src ,
+.BI "              size_t " dsize );
+.fi
+.SH DESCRIPTION
+This function
+copies non-null characters
+from the string pointed to by
+.I src
+into the array pointed to by
+.IR dst .
+If the source has too few non-null bytes to fill the destination,
+it pads the destination with trailing null bytes.
+If the destination buffer,
+limited by its size,
+isn't large enough to hold the copy,
+the resulting character sequence is truncated.
+.P
+It is equivalent to
+.P
+.in +4n
+.EX
+stpncpy(dst, src, dsize), dst
+.EE
+.in
+.SH RETURN VALUE
+.IR dst .
+.SH ATTRIBUTES
+For an explanation of the terms used in this section, see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR strncpy ()
+T}	Thread safety	MT-Safe
+.TE
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+C89, POSIX.1-2001, SVr4, 4.3BSD.
+.SH CAVEATS
+The name of this function is confusing.
+This function produces a null-padded character sequence,
+not a string (see
+.BR string_copying (7)).
+For example:
+.P
+.in +4n
+.EX
+strncpy(buf, "1", 5);       // { \[aq]1\[aq],   0,   0,   0,   0 }
+strncpy(buf, "1234", 5);    // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq],   0 }
+strncpy(buf, "12345", 5);   // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq], \[aq]5\[aq] }
+strncpy(buf, "123456", 5);  // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq], \[aq]5\[aq] }
+.EE
+.in
+.P
+It's impossible to distinguish truncation by the result of the call,
+from a character sequence that just fits the destination buffer;
+truncation should be detected by
+comparing the length of the input string
+with the size of the destination buffer.
+.SH EXAMPLES
+This function is intended to be used
+only for writing to fixed-width null-padded character arrays,
+such as those in
+.BR utmp (5)
+members.
+.P
+.in +4n
+.EX
+strncpy(utmp->ut_user, "foo", countof(utmp->ut_user));
+.EE
+.in
+.SH SEE ALSO
+.BR memory.h (3head),
+.BR string_copying (7)

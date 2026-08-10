@@ -5,10 +5,7 @@
 .\"
 .TH stpncpy 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-stpncpy, strncpy
-\-
-fill a fixed-size buffer with non-null bytes from a string,
-padding with null bytes as needed
+stpncpy \- nonstring return‐offset‐pointer copy
 .SH LIBRARY
 Standard C library
 .RI ( libc ,\~ \-lc )
@@ -16,9 +13,6 @@ Standard C library
 .nf
 .BR #include\~<string.h> "  // see memory.h(3head)"
 .P
-.BR "char *strncpy(" "size_t dsize;"
-.BI "              char " dst "[restrict " dsize "], const char *restrict " src ,
-.BI "              size_t " dsize );
 .BR "char *stpncpy(" "size_t dsize;"
 .BI "              char " dst "[restrict " dsize "], const char *restrict " src ,
 .BI "              size_t " dsize );
@@ -37,30 +31,13 @@ Feature Test Macro Requirements for glibc (see
         _GNU_SOURCE
 .fi
 .SH DESCRIPTION
-These functions copy non-null bytes from the string pointed to by
-.I src
-into the array pointed to by
-.IR dst .
-If the source has too few non-null bytes to fill the destination,
-the functions pad the destination with trailing null bytes.
-If the destination buffer,
-limited by its size,
-isn't large enough to hold the copy,
-the resulting character sequence is truncated.
-For the difference between the two functions, see RETURN VALUE.
-.TP
-.BR strncpy ()
+This function is equivalent to
+.BR strncpy (3),
+but it returns a pointer to
+one past the last nonnull written character.
+.P
 It is equivalent to
-.IP
-.in +4n
-.EX
-stpncpy(dst, src, dsize), dst
-.EE
-.in
-.TP
-.BR stpncpy ()
-It is equivalent to
-.IP
+.P
 .in +4n
 .EX
 memset(mempcpy(dst, src, strnlen(src, dsize)), \[aq]\[rs]0\[aq],
@@ -68,13 +45,8 @@ memset(mempcpy(dst, src, strnlen(src, dsize)), \[aq]\[rs]0\[aq],
 .EE
 .in
 .SH RETURN VALUE
-.TP
-.BR strncpy ()
-returns
-.IR dst .
-.TP
-.BR stpncpy ()
-returns a pointer to
+This function returns
+a pointer to
 one past the last non-null character written,
 that is,
 .IR dest\~+\~strnlen(src,\~n) .
@@ -89,59 +61,17 @@ Interface	Attribute	Value
 T{
 .na
 .nh
-.BR stpncpy (),
-.BR strncpy ()
+.BR stpncpy ()
 T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
-.TP
-.BR strncpy ()
-C11, POSIX.1-2008.
-.TP
-.BR stpncpy ()
 POSIX.1-2008.
 .SH HISTORY
-.TP
-.BR strncpy ()
-C89, POSIX.1-2001, SVr4, 4.3BSD.
-.TP
-.BR stpncpy ()
 glibc 1.07.
 POSIX.1-2008.
 .SH CAVEATS
-The name of these functions is confusing.
-These functions produce a null-padded character sequence,
-not a string (see
-.BR string_copying (7)).
-For example:
-.P
-.in +4n
-.EX
-strncpy(buf, "1", 5);       // { \[aq]1\[aq],   0,   0,   0,   0 }
-strncpy(buf, "1234", 5);    // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq],   0 }
-strncpy(buf, "12345", 5);   // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq], \[aq]5\[aq] }
-strncpy(buf, "123456", 5);  // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq], \[aq]5\[aq] }
-.EE
-.in
-.P
-It's impossible to distinguish truncation by the result of the call,
-from a character sequence that just fits the destination buffer;
-truncation should be detected by
-comparing the length of the input string
-with the size of the destination buffer.
-.SH EXAMPLES
-This function is intended to be used
-only for writing to fixed-width null-padded character arrays,
-such as those in
-.BR utmp (5)
-members.
-.P
-.in +4n
-.EX
-strncpy(utmp->ut_user, "foo", countof(utmp->ut_user));
-.EE
-.in
+See
+.BR strncpy (3).
 .SH SEE ALSO
 .BR memory.h (3head),
-.BR wcpncpy (3),
 .BR string_copying (7)
