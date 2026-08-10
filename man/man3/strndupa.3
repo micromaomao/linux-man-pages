@@ -16,7 +16,7 @@ Standard C library
 .BR #include\~<string.h> "  // see memory.h(3head)"
 .P
 .BR "char *strndupa(" "size_t n;"
-.BI "              const char " s [ n "], size_t " n );
+.BI "              const char " strn [ n "], size_t " n );
 .fi
 .SH DESCRIPTION
 .BR strndupa ()
@@ -30,7 +30,7 @@ It is equivalent to
 .P
 .in +4n
 .EX
-strncat(strcpy(alloca(n + 1), ""), s, n)
+strncat(strcpy(alloca(n + 1), ""), strn, n)
 .EE
 .in
 .SH RETURN VALUE
