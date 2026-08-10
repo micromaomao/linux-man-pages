@@ -15,16 +15,21 @@ Standard C library
 .BR #include\~<strings.h> "  // see memory.h(3head)"
 .P
 .BR "void bzero(" "size_t n;"
-.BI "           void " s [ n "], size_t " n );
+.BI "           void " a [ n "], size_t " n );
 .fi
 .SH DESCRIPTION
-The
-.BR bzero ()
-function erases the data in the
-.I n
-bytes of the memory starting at the location pointed to by
-.IR s ,
-by writing zeros (bytes containing \[aq]\[rs]0\[aq]) to that area.
+This function
+writes zeros (\[aq]\[rs]0\[aq])
+to the memory starting at the location pointed to by
+.IR a .
+.P
+It is equivalent to
+.P
+.in +4n
+.EX
+memset(a, \[aq]\[rs]0\[aq], n)
+.EE
+.in
 .SH RETURN VALUE
 None.
 .SH ATTRIBUTES
