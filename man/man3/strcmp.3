@@ -27,9 +27,6 @@ and
 as if by calling
 .BR memcmp (3).
 .P
-The locale is not taken into account (for a locale-aware comparison, see
-.BR strcoll (3)).
-.P
 It is equivalent to
 .P
 .in +4n
@@ -58,6 +55,9 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, C89, SVr4, 4.3BSD.
+.SH CAVEATS
+The locale is not taken into account (for a locale-aware comparison, see
+.BR strcoll (3)).
 .SH EXAMPLES
 The program below can be used to demonstrate the operation of
 .BR strcmp ().
