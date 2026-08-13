@@ -352,7 +352,7 @@ worker(void *arg)
 \&
 	usleep(*futex * 10000);
 	*futex *= 2;
-	my_futex_wait_private(futex, 1);
+	my_futex_wake_private(futex, 1);
 	return NULL;
 }
 \&
