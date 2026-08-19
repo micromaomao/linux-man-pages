@@ -1,1 +1,65 @@
-.so man3/fgetc.3
+'\" t
+.\" Copyright 1993, Thomas Koenig <ig25@rz.uni-karlsruhe.de>
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH fgets 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+fgets \- FILE get line-string
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <stdio.h>
+.P
+.BR "char *fgets(" "int size;"
+.BI "            char " s "[restrict " size "], int " size ", FILE *restrict " stream );
+.fi
+.SH DESCRIPTION
+.BR fgets ()
+reads in at most one less than
+.I size
+characters from
+.I stream
+and stores them into the buffer pointed to by
+.IR s .
+Reading stops after an
+.B EOF
+or a newline.
+If a newline is read, it is stored into the buffer.
+A terminating null byte (\[aq]\[rs]0\[aq])
+is stored after the last character in the buffer.
+.SH RETURN VALUE
+.BR fgets ()
+returns
+.I s
+on success, and NULL
+on error or when end of file occurs while no characters have been read.
+.SH ATTRIBUTES
+For an explanation of the terms used in this section, see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR fgets ()
+T}	Thread safety	MT-Safe
+.TE
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C89.
+.SH SEE ALSO
+.BR ferror (3),
+.BR fgetc (3),
+.BR fgetws (3),
+.BR fopen (3),
+.BR fread (3),
+.BR getline (3),
+.BR unlocked_stdio (3)
