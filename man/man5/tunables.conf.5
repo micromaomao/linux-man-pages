@@ -27,10 +27,14 @@ The resulting data is read when the program starts execution.
 .P
 Each line in the file
 .I /etc/tunables.conf
-specifies a tunable,
-which is specified with a string of the form
+specifies
+a tunable,
+a directive,
+or a filter.
+.SS Tunables
+A tunable is specified with a string of the form
 .IB name = value \f[R].\f[]
-.P
+.SS Directives
 The syntax allows lines to start with the keyword
 .B include
 followed by a
@@ -38,7 +42,7 @@ followed by a
 pattern.
 Files matching that pattern will be processed
 as if their contents were included at that point.
-.P
+.SS Modifiers
 Each line may include zero or more keywords or symbols at the beginning,
 which affect how each tunable affects each processes.
 The keywords must be separated by whitespace,
@@ -81,10 +85,8 @@ The tunable applies to both
 and
 .RB non- AT_SECURE
 processes.
-.P
-The file may also contain
-.IR filters ,
-which limit the tunables following it.
+.SS Filters
+Filters limit the tunables following it.
 The effects of a filter are terminated by
 any of the following:
 .IP \[bu] 3
