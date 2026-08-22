@@ -381,7 +381,6 @@ It returns a pointer suitable for chaining.
 .BR strcat (3)
 Copy and catenate the input string into a destination string.
 The programmer is responsible for allocating a buffer large enough.
-The return value is useless.
 .IP
 .BR stpcpy (3)
 is a faster alternative to these functions.
@@ -451,7 +450,7 @@ with the size of the destination buffer.
 .BR strncpy (3)
 This function is identical to
 .BR stpncpy (3)
-except for the useless return value.
+except for the return value.
 .IP
 .BR stpncpy (3)
 is a more useful alternative to this function.
@@ -462,7 +461,6 @@ Catenate the input character sequence,
 contained in a null-padded fixed-size buffer,
 into a destination string.
 The programmer is responsible for allocating a buffer large enough.
-The return value is useless.
 .IP
 Do not confuse this function with
 .BR strncpy (3);
@@ -532,8 +530,7 @@ The length of the total string that they tried to create
 .BR strncat (3)
 The
 .I dst
-pointer,
-which is useless.
+pointer.
 .TP
 .BR strndup (3)
 The newly allocated string.
