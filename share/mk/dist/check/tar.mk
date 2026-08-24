@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_DIST_CHECK_TAR_INCLUDED
-MAKEFILE_DIST_CHECK_TAR_INCLUDED := 1
+MAKEFILE_DIST_CHECK_TAR_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/cp.mk

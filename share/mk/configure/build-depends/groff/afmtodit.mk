@@ -3,26 +3,26 @@
 
 
 ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_AFMTODIT_INCLUDED
-MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_AFMTODIT_INCLUDED := 1
+MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_AFMTODIT_INCLUDED ::= 1
 
 
 ifndef PDF_TEXT_ENC
-PDF_TEXT_ENC := /usr/share/groff/current/font/devpdf/enc/text.enc
+PDF_TEXT_ENC ::= /usr/share/groff/current/font/devpdf/enc/text.enc
 endif
 ifndef PDF_TEXT_MAP
-PDF_TEXT_MAP := /usr/share/groff/current/font/devpdf/map/text.map
+PDF_TEXT_MAP ::= /usr/share/groff/current/font/devpdf/map/text.map
 endif
 
 
-DEFAULT_AFMTODITFLAGS :=
+DEFAULT_AFMTODITFLAGS ::=
 ifndef AFMTODITFLAGS
-AFMTODITFLAGS         :=
+AFMTODITFLAGS         ::=
 endif
 ifndef AFMTODITFLAGS_
-AFMTODITFLAGS_        := $(DEFAULT_AFMTODITFLAGS) $(AFMTODITFLAGS)
+AFMTODITFLAGS_        ::= $(DEFAULT_AFMTODITFLAGS) $(AFMTODITFLAGS)
 endif
 ifndef AFMTODIT
-AFMTODIT              := afmtodit
+AFMTODIT              ::= afmtodit
 endif
 
 

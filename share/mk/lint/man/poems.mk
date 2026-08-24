@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_LINT_MAN_POEMS_INCLUDED
-MAKEFILE_LINT_MAN_POEMS_INCLUDED := 1
+MAKEFILE_LINT_MAN_POEMS_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/man/nonso.mk
@@ -15,13 +15,13 @@ include $(MAKEFILEDIR)/configure/build-depends/pcre2-utils/pcre2grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 
 
-ext := .lint-man.poems.touch
-xfail := $(MAKEFILEDIR)/lint/man/poems.xfail
-regexf := $(MAKEFILEDIR)/lint/man/poems.pcre2grep
+ext ::= .lint-man.poems.touch
+xfail ::= $(MAKEFILEDIR)/lint/man/poems.xfail
+regexf ::= $(MAKEFILEDIR)/lint/man/poems.pcre2grep
 
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
 endif
 
 

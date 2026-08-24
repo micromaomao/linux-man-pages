@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_FONTS_TINOS_AFM_INCLUDED
-MAKEFILE_BUILD_FONTS_TINOS_AFM_INCLUDED := 1
+MAKEFILE_BUILD_FONTS_TINOS_AFM_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/fonts/_.mk
@@ -11,7 +11,7 @@ include $(MAKEFILEDIR)/configure/build-depends/texlive-fonts-extra-links/Tinos-R
 include $(MAKEFILEDIR)/configure/build-depends/fontforge/fontforge.mk
 
 
-_TINOSR_AFM := $(_FONTSDIR)/devpdf/TinosR.afm
+_TINOSR_AFM ::= $(_FONTSDIR)/devpdf/TinosR.afm
 
 
 $(_TINOSR_AFM): $(TINOSR_TTF) $(MK) | $$(@D)/

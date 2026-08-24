@@ -3,13 +3,13 @@
 
 
 ifndef MAKEFILE_SRC_SORTMAN_INCLUDED
-MAKEFILE_SRC_SORTMAN_INCLUDED := 1
+MAKEFILE_SRC_SORTMAN_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
-SORTMAN := $(SRCBINDIR)/sortman
+SORTMAN ::= $(SRCBINDIR)/sortman
 
 
 endif  # include guard

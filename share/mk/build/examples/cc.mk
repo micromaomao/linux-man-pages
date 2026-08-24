@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_EX_CC_INCLUDED
-MAKEFILE_BUILD_EX_CC_INCLUDED := 1
+MAKEFILE_BUILD_EX_CC_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -13,16 +13,16 @@ include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .o
-xfail := $(MAKEFILEDIR)/build/examples/cc.xfail
+ext ::= .o
+xfail ::= $(MAKEFILEDIR)/build/examples/cc.xfail
 
-tgts := $(patsubst %.c, %$(ext), $(_EX_TU_c))
+tgts ::= $(patsubst %.c, %$(ext), $(_EX_TU_c))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %.c, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %.c, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
 endif
 
 
-_EX_TU_o := $(tgts)
+_EX_TU_o ::= $(tgts)
 
 
 $(_EX_TU_o): %$(ext): %.c $(MK)

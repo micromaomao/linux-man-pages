@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_LINT_MAN_MANDOC_INCLUDED
-MAKEFILE_LINT_MAN_MANDOC_INCLUDED := 1
+MAKEFILE_LINT_MAN_MANDOC_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -15,13 +15,13 @@ include $(MAKEFILEDIR)/configure/build-depends/mandoc/mandoc.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .lint-man.mandoc.touch
-xfail := $(MAKEFILEDIR)/lint/man/mandoc.xfail
-regexf := $(MAKEFILEDIR)/lint/man/mandoc.ignore.grep
+ext ::= .lint-man.mandoc.touch
+xfail ::= $(MAKEFILEDIR)/lint/man/mandoc.xfail
+regexf ::= $(MAKEFILEDIR)/lint/man/mandoc.ignore.grep
 
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
 endif
 
 

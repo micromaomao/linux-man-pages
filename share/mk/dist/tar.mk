@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_DIST_TAR_INCLUDED
-MAKEFILE_DIST_TAR_INCLUDED := 1
+MAKEFILE_DIST_TAR_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/sort.mk
@@ -15,8 +15,8 @@ include $(MAKEFILEDIR)/dist/_.mk
 include $(MAKEFILEDIR)/dist/files.mk
 
 
-DISTFILE  := $(DISTNAME).tar
-_DISTFILE := $(builddir)/$(DISTFILE)
+DISTFILE  ::= $(DISTNAME).tar
+_DISTFILE ::= $(builddir)/$(DISTFILE)
 
 
 $(_DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/

@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_DIST_FILES_INCLUDED
-MAKEFILE_DIST_FILES_INCLUDED := 1
+MAKEFILE_DIST_FILES_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/cp.mk
@@ -18,22 +18,22 @@ include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/dist/_.mk
 
 
-DISTFILES    := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
-_DISTFILES   := $(patsubst $(srcdir)/%, $(_DISTDIR)/%, $(DISTFILES))
-_DISTPAGES   := $(filter $(_DISTDIR)/man/%, $(_DISTFILES))
-_DISTVERSION := $(_DISTDIR)/share/mk/configure/version.mk
-_DISTOTHERS  := $(filter-out $(_DISTPAGES) $(_DISTVERSION), $(_DISTFILES))
+DISTFILES    ::= $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
+_DISTFILES   ::= $(patsubst $(srcdir)/%, $(_DISTDIR)/%, $(DISTFILES))
+_DISTPAGES   ::= $(filter $(_DISTDIR)/man/%, $(_DISTFILES))
+_DISTVERSION ::= $(_DISTDIR)/share/mk/configure/version.mk
+_DISTOTHERS  ::= $(filter-out $(_DISTPAGES) $(_DISTVERSION), $(_DISTFILES))
 
 
-FORCE_DISTVERSION := \
+FORCE_DISTVERSION ::= \
 	$(shell \
 		if $(TEST) -f $(_DISTVERSION); then \
 			<$(_DISTVERSION) \
 			$(GREP) \
-				-e '^VERSION :=' \
-				-e '^DISTDATE :=' \
-			| $(SED) '/^VERSION := $(VERSION)$$/d' \
-			| $(SED) '/^DISTDATE := $(DISTDATE)$$/d' \
+				-e '^VERSION ::=' \
+				-e '^DISTDATE ::=' \
+			| $(SED) '/^VERSION ::= $(VERSION)$$/d' \
+			| $(SED) '/^DISTDATE ::= $(DISTDATE)$$/d' \
 			| $(GREP) ^ $(HIDE_ERR) >&2 \
 			&& $(ECHO) FORCE; \
 		fi; \
@@ -47,8 +47,8 @@ $(_DISTPAGES): $(_DISTDIR)/man/%: $(srcdir)/man/% $(MK) | $$(@D)/
 $(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(MK) $(FORCE_DISTVERSION) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
 	<$< \
-	$(SED) 's/^VERSION *:=.*/VERSION := $(VERSION)/' \
-	| $(SED) 's/^DISTDATE *:=.*/DISTDATE := $(DISTDATE)/' \
+	$(SED) 's/^VERSION *::=.*/VERSION ::= $(VERSION)/' \
+	| $(SED) 's/^DISTDATE *::=.*/DISTDATE ::= $(DISTDATE)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
 $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% $(MK) | $$(@D)/

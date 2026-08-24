@@ -3,17 +3,17 @@
 
 
 ifndef MAKEFILE_BUILD_PS_GROPS_INCLUDED
-MAKEFILE_BUILD_PS_GROPS_INCLUDED := 1
+MAKEFILE_BUILD_PS_GROPS_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/ps/troff.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/grops.mk
 
 
-ext := .ps
+ext ::= .ps
 
 
-_PSMAN := $(patsubst %.ps.set, %$(ext), $(_PSMAN_set))
+_PSMAN ::= $(patsubst %.ps.set, %$(ext), $(_PSMAN_set))
 
 
 $(_PSMAN): %$(ext): %.ps.set $(MK) | $$(@D)/

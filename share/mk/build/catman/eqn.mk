@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_CATMAN_EQN_INCLUDED
-MAKEFILE_BUILD_CATMAN_EQN_INCLUDED := 1
+MAKEFILE_BUILD_CATMAN_EQN_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/pre/tbl.mk
@@ -12,10 +12,10 @@ include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/nroff.mk
 
 
-ext := .cat.troff
+ext ::= .cat.troff
 
 
-_CATMAN_troff := $(patsubst %.eqn, %$(ext), $(_MAN_eqn))
+_CATMAN_troff ::= $(patsubst %.eqn, %$(ext), $(_MAN_eqn))
 
 
 $(_CATMAN_troff): %$(ext): %.eqn $(MK) | $$(@D)/

@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_DIST_Z_INCLUDED
-MAKEFILE_DIST_Z_INCLUDED := 1
+MAKEFILE_DIST_Z_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/bzip2/bzip2.mk
@@ -14,7 +14,7 @@ include $(MAKEFILEDIR)/configure/build-depends/xz-utils/xz.mk
 include $(MAKEFILEDIR)/dist/tar.mk
 
 
-compression := bz2 gz lz xz
+compression ::= bz2 gz lz xz
 
 
 define _DISTFILE_z_rule

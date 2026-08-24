@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_GCC_CC_INCLUDED
-MAKEFILE_CONFIGURE_BUILD_DEPENDS_GCC_CC_INCLUDED := 1
+MAKEFILE_CONFIGURE_BUILD_DEPENDS_GCC_CC_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
@@ -12,11 +12,11 @@ include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 
 
 ifndef CC
-CC := gcc
+CC ::= gcc
 endif
 
 
-CC_VENDOR := \
+CC_VENDOR ::= \
 	$(shell \
 		$(CC) -v 2>&1 \
 		| $(SED) -n '1p;$$p' \
@@ -28,7 +28,7 @@ CC_VENDOR := \
 	)
 
 
-COMMON_CFLAGS := \
+COMMON_CFLAGS ::= \
 	-O3 \
 	-flto \
 	-Wall \
@@ -44,10 +44,10 @@ COMMON_CFLAGS := \
 	-Wno-error=uninitialized
 
 
-GCC_CFLAGS := -fanalyzer
+GCC_CFLAGS ::= -fanalyzer
 
 
-CLANG_CFLAGS := \
+CLANG_CFLAGS ::= \
 	-Weverything \
 	-Wno-atomic-implicit-seq-cst \
 	-Wno-c++-unterminated-string-initialization \
@@ -62,7 +62,7 @@ CLANG_CFLAGS := \
 	-Wno-used-but-marked-unused
 
 
-DEFAULT_CFLAGS := $(COMMON_CFLAGS)
+DEFAULT_CFLAGS ::= $(COMMON_CFLAGS)
 
 ifeq ($(CC_VENDOR),gcc)
 DEFAULT_CFLAGS += $(GCC_CFLAGS)
@@ -71,10 +71,10 @@ DEFAULT_CFLAGS += $(CLANG_CFLAGS)
 endif
 
 ifndef CFLAGS
-CFLAGS         :=
+CFLAGS         ::=
 endif
 ifndef CFLAGS_
-CFLAGS_        := $(DEFAULT_CFLAGS) $(CFLAGS)
+CFLAGS_        ::= $(DEFAULT_CFLAGS) $(CFLAGS)
 endif
 
 

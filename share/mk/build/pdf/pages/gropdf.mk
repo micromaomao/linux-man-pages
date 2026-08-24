@@ -3,17 +3,17 @@
 
 
 ifndef MAKEFILE_BUILD_PDF_PAGES_GROPDF_INCLUDED
-MAKEFILE_BUILD_PDF_PAGES_GROPDF_INCLUDED := 1
+MAKEFILE_BUILD_PDF_PAGES_GROPDF_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/pdf/pages/troff.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff/gropdf.mk
 
 
-ext := .pdf
+ext ::= .pdf
 
 
-_PDFMAN := $(patsubst %.pdf.set, %$(ext), $(_PDFMAN_set))
+_PDFMAN ::= $(patsubst %.pdf.set, %$(ext), $(_PDFMAN_set))
 
 
 $(_PDFMAN): %$(ext): %.pdf.set $(MK) | $$(@D)/

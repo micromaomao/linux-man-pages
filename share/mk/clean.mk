@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_CLEAN_INCLUDED
-MAKEFILE_CLEAN_INCLUDED := 1
+MAKEFILE_CLEAN_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/rm.mk

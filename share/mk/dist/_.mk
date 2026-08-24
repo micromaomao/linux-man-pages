@@ -3,14 +3,14 @@
 
 
 ifndef MAKEFILE_DIST_INCLUDED
-MAKEFILE_DIST_INCLUDED := 1
+MAKEFILE_DIST_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
 include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 
 
-_DISTDIR := $(builddir)/dist
+_DISTDIR ::= $(builddir)/dist
 
 
 $(builddir)/dist/%/:

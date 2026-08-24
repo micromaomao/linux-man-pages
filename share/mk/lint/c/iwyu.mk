@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_LINT_C_IWYU_INCLUDED
-MAKEFILE_LINT_C_IWYU_INCLUDED := 1
+MAKEFILE_LINT_C_IWYU_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -19,15 +19,15 @@ include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .lint-c.iwyu.touch
-xfail := $(MAKEFILEDIR)/lint/c/iwyu.xfail
+ext ::= .lint-c.iwyu.touch
+xfail ::= $(MAKEFILEDIR)/lint/c/iwyu.xfail
 
-tgts_EX := $(patsubst %, %$(ext), $(_EX_TU_src))
+tgts_EX ::= $(patsubst %, %$(ext), $(_EX_TU_src))
 ifeq ($(SKIP_XFAIL),yes)
-tgts_EX := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts_EX))
+tgts_EX ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts_EX))
 endif
 
-tgts := $(tgts_EX)
+tgts ::= $(tgts_EX)
 
 
 $(tgts_EX): %$(ext): %

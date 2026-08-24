@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_NROFF_INCLUDED
-MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_NROFF_INCLUDED := 1
+MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_NROFF_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
@@ -14,13 +14,13 @@ include $(MAKEFILEDIR)/configure/build-depends/man/man.mk
 
 
 ifndef NROFF_CHECKSTYLE_LVL
-NROFF_CHECKSTYLE_LVL := 3
+NROFF_CHECKSTYLE_LVL ::= 3
 endif
 ifndef NROFF_LINE_LENGTH
-NROFF_LINE_LENGTH    := $(shell $(EXPR) $(MANWIDTH) - 2)
+NROFF_LINE_LENGTH    ::= $(shell $(EXPR) $(MANWIDTH) - 2)
 endif
 ifndef NROFF_OUT_DEVICE
-NROFF_OUT_DEVICE     := \
+NROFF_OUT_DEVICE     ::= \
 	$(shell $(LOCALE) charmap \
 		| $(GREP) -i 'utf-*8' >/dev/null \
 		&& $(ECHO) utf8 \
@@ -29,16 +29,16 @@ NROFF_OUT_DEVICE     := \
 endif
 
 
-DEFAULT_NROFFFLAGS := \
+DEFAULT_NROFFFLAGS ::= \
 	-T$(NROFF_OUT_DEVICE) \
 	-rLL=$(NROFF_LINE_LENGTH)n \
 	-rCHECKSTYLE=$(NROFF_CHECKSTYLE_LVL) \
 	-ww
 ifndef NROFFFLAGS
-NROFFFLAGS         :=
+NROFFFLAGS         ::=
 endif
 ifndef NROFFFLAGS_
-NROFFFLAGS_        := $(DEFAULT_NROFFFLAGS) $(NROFFFLAGS)
+NROFFFLAGS_        ::= $(DEFAULT_NROFFFLAGS) $(NROFFFLAGS)
 endif
 
 

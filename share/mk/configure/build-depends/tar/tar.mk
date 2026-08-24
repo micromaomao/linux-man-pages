@@ -3,25 +3,25 @@
 
 
 ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_TAR_TAR_INCLUDED
-MAKEFILE_CONFIGURE_BUILD_DEPENDS_TAR_TAR_INCLUDED := 1
+MAKEFILE_CONFIGURE_BUILD_DEPENDS_TAR_TAR_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/version.mk
 
 
-DEFAULT_TARFLAGS := \
+DEFAULT_TARFLAGS ::= \
 	--sort=name \
 	--owner=root:0 \
 	--group=root:0 \
 	--mtime='$(DISTDATE)'
 ifndef TARFLAGS
-TARFLAGS         :=
+TARFLAGS         ::=
 endif
 ifndef TARFLAGS_
-TARFLAGS_        := $(DEFAULT_TARFLAGS) $(TARFLAGS)
+TARFLAGS_        ::= $(DEFAULT_TARFLAGS) $(TARFLAGS)
 endif
 ifndef TAR
-TAR              := tar
+TAR              ::= tar
 endif
 
 

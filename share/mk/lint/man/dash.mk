@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_LINT_MAN_DASH_INCLUDED
-MAKEFILE_LINT_MAN_DASH_INCLUDED := 1
+MAKEFILE_LINT_MAN_DASH_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/man/nonso.mk
@@ -15,10 +15,10 @@ include $(MAKEFILEDIR)/configure/build-depends/pcre2-utils/pcre2grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 
 
-ext := .lint-man.dash.touch
-regexf := $(MAKEFILEDIR)/lint/man/dash.pcre2grep
+ext ::= .lint-man.dash.touch
+regexf ::= $(MAKEFILEDIR)/lint/man/dash.pcre2grep
 
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 
 
 $(tgts): %$(ext): % $(regexf) $(MK) | $$(@D)/

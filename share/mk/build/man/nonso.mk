@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_MAN_NONSO_INCLUDED
-MAKEFILE_BUILD_MAN_NONSO_INCLUDED := 1
+MAKEFILE_BUILD_MAN_NONSO_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -15,7 +15,7 @@ include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/src/man.mk
 
 
-_NONSO := $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(NONSO))
+_NONSO ::= $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(NONSO))
 
 
 $(_NONSO): $(_MANDIR)/%: $(MANDIR)/% $(MK) | $$(@D)/

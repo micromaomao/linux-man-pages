@@ -3,13 +3,13 @@
 
 
 ifndef MAKEFILE_BUILD_FONTS_INCLUDED
-MAKEFILE_BUILD_FONTS_INCLUDED := 1
+MAKEFILE_BUILD_FONTS_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 
 
-_FONTSDIR := $(builddir)/fonts
+_FONTSDIR ::= $(builddir)/fonts
 
 
 .PHONY: build-fonts

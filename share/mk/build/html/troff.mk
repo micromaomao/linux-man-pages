@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_HTML_TROFF_INCLUDED
-MAKEFILE_BUILD_HTML_TROFF_INCLUDED := 1
+MAKEFILE_BUILD_HTML_TROFF_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -13,16 +13,16 @@ include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .html.set
-xfail := $(MAKEFILEDIR)/build/html/troff.xfail
+ext ::= .html.set
+xfail ::= $(MAKEFILEDIR)/build/html/troff.xfail
 
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
 endif
 
 
-_HTMLMAN_set  := $(tgts)
+_HTMLMAN_set ::= $(tgts)
 
 
 $(_HTMLMAN_set): %$(ext): %.eqn $(MK) | $$(@D)/

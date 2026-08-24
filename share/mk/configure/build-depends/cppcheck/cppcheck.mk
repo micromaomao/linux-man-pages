@@ -3,14 +3,14 @@
 
 
 ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_CPPCHECK_CPPCHECK_INCLUDED
-MAKEFILE_CONFIGURE_BUILD_DEPENDS_CPPCHECK_CPPCHECK_INCLUDED := 1
+MAKEFILE_CONFIGURE_BUILD_DEPENDS_CPPCHECK_CPPCHECK_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
-CPPCHECK_SUPPRESS     := $(SYSCONFDIR)/cppcheck/cppcheck.suppress
-DEFAULT_CPPCHECKFLAGS := \
+CPPCHECK_SUPPRESS     ::= $(SYSCONFDIR)/cppcheck/cppcheck.suppress
+DEFAULT_CPPCHECKFLAGS ::= \
 	--enable=all \
 	--error-exitcode=2 \
 	--inconclusive \
@@ -18,13 +18,13 @@ DEFAULT_CPPCHECKFLAGS := \
 	--quiet \
 	--suppressions-list=$(CPPCHECK_SUPPRESS)
 ifndef CPPCHECKFLAGS
-CPPCHECKFLAGS         :=
+CPPCHECKFLAGS         ::=
 endif
 ifndef CPPCHECKFLAGS_
-CPPCHECKFLAGS_        := $(DEFAULT_CPPCHECKFLAGS) $(CPPCHECKFLAGS)
+CPPCHECKFLAGS_        ::= $(DEFAULT_CPPCHECKFLAGS) $(CPPCHECKFLAGS)
 endif
 ifndef CPPCHECK
-CPPCHECK              := cppcheck
+CPPCHECK              ::= cppcheck
 endif
 
 

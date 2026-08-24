@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_PDF_BOOK_INCLUDED
-MAKEFILE_BUILD_PDF_BOOK_INCLUDED := 1
+MAKEFILE_BUILD_PDF_BOOK_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -21,13 +21,13 @@ include $(MAKEFILEDIR)/configure/build-depends/moreutils/sponge.mk
 include $(MAKEFILEDIR)/configure/version.mk
 
 
-MKBOOKDIR := $(MAKEFILEDIR)/build/pdf/book
-MKBOOK    := $(wildcard $(MKBOOKDIR)/*)
+MKBOOKDIR ::= $(MAKEFILEDIR)/build/pdf/book
+MKBOOK    ::= $(wildcard $(MKBOOKDIR)/*)
 
 
-PDF_BOOK  := $(DISTNAME).pdf
-_PDFDIR   := $(builddir)
-_PDF_BOOK := $(_PDFDIR)/$(PDF_BOOK)
+PDF_BOOK  ::= $(DISTNAME).pdf
+_PDFDIR   ::= $(builddir)
+_PDF_BOOK ::= $(_PDFDIR)/$(PDF_BOOK)
 
 
 $(_PDF_BOOK): $(_MANPAGES) $(_DOWNLOAD) $(_TINOS) $(MKBOOK) $(MK) | $$(@D)/

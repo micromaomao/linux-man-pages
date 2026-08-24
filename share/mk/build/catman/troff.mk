@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_CATMAN_TROFF_INCLUDED
-MAKEFILE_BUILD_CATMAN_TROFF_INCLUDED := 1
+MAKEFILE_BUILD_CATMAN_TROFF_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -15,17 +15,17 @@ include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .cat.set
-xfail := $(MAKEFILEDIR)/build/catman/troff.xfail
-regexf := $(MAKEFILEDIR)/build/catman/troff.ignore.grep
+ext ::= .cat.set
+xfail ::= $(MAKEFILEDIR)/build/catman/troff.xfail
+regexf ::= $(MAKEFILEDIR)/build/catman/troff.ignore.grep
 
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
 endif
 
 
-_CATMAN_set := $(tgts)
+_CATMAN_set ::= $(tgts)
 
 
 $(_CATMAN_set): %$(ext): %.cat.troff $(regexf) $(MK) | $$(@D)/

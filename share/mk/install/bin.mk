@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_INSTALL_BIN_INCLUDED
-MAKEFILE_INSTALL_BIN_INCLUDED := 1
+MAKEFILE_INSTALL_BIN_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
@@ -12,12 +12,12 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/src/sh.mk
 
 
-_bindir := $(DESTDIR)$(bindir)
+_bindir ::= $(DESTDIR)$(bindir)
 
 
-_bin_sh := $(patsubst $(SRCBINDIR)/%, $(_bindir)/%, $(BIN_sh))
-_bin    := $(_bin_sh)
-_bin_rm := $(addsuffix -rm, $(wildcard $(_bin)))
+_bin_sh ::= $(patsubst $(SRCBINDIR)/%, $(_bindir)/%, $(BIN_sh))
+_bin    ::= $(_bin_sh)
+_bin_rm ::= $(addsuffix -rm, $(wildcard $(_bin)))
 
 
 $(_bin_sh): $(_bindir)/%: $(SRCBINDIR)/%

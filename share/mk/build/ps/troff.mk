@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_PS_TROFF_INCLUDED
-MAKEFILE_BUILD_PS_TROFF_INCLUDED := 1
+MAKEFILE_BUILD_PS_TROFF_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -13,16 +13,16 @@ include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .ps.set
-xfail := $(MAKEFILEDIR)/build/ps/troff.xfail
+ext ::= .ps.set
+xfail ::= $(MAKEFILEDIR)/build/ps/troff.xfail
 
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
 endif
 
 
-_PSMAN_set  := $(tgts)
+_PSMAN_set ::= $(tgts)
 
 
 $(_PSMAN_set): %$(ext): %.ps.troff $(MK) | $$(@D)/

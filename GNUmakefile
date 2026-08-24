@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-SHELL       := bash
-.SHELLFLAGS := -Eeuo pipefail -c
+SHELL       ::= bash
+.SHELLFLAGS ::= -Eeuo pipefail -c
 
 
 ifneq (4.4.999,$(firstword $(sort 4.4.999 $(MAKE_VERSION))))
@@ -19,12 +19,12 @@ MAKEFLAGS += --warn-undefined-variables
 
 
 ifndef srcdir
-srcdir      := .
+srcdir      ::= .
 endif
-MAKEFILEDIR := $(CURDIR)/share/mk
+MAKEFILEDIR ::= $(CURDIR)/share/mk
 
 
-INFO_ :=
+INFO_ ::=
 
 
 .PHONY: all
@@ -34,8 +34,8 @@ all: build;
 .SECONDEXPANSION:
 
 
-MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk */*/*/*.mk))
-MK  := $(CURDIR)/GNUmakefile $(MK_)
+MK_ ::= $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk */*/*/*.mk))
+MK  ::= $(CURDIR)/GNUmakefile $(MK_)
 include $(MK_)
 $(MK):: ;
 

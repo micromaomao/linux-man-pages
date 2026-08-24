@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_PDF_PAGES_TROFF_INCLUDED
-MAKEFILE_BUILD_PDF_PAGES_TROFF_INCLUDED := 1
+MAKEFILE_BUILD_PDF_PAGES_TROFF_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -13,16 +13,16 @@ include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .pdf.set
-xfail := $(MAKEFILEDIR)/build/pdf/pages/troff.xfail
+ext ::= .pdf.set
+xfail ::= $(MAKEFILEDIR)/build/pdf/pages/troff.xfail
 
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(shell cat $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(shell cat $(xfail))), $(tgts))
 endif
 
 
-_PDFMAN_set  := $(tgts)
+_PDFMAN_set ::= $(tgts)
 
 
 $(_PDFMAN_set): %$(ext): %.pdf.troff $(MK) | $$(@D)/

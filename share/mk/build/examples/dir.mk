@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_EX_DIR_INCLUDED
-MAKEFILE_BUILD_EX_DIR_INCLUDED := 1
+MAKEFILE_BUILD_EX_DIR_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/man/nonso.mk
@@ -11,7 +11,7 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils/mkdir.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
 
 
-_PAGEEXDIRS := $(patsubst %, %.d/, $(_NONSO))
+_PAGEEXDIRS ::= $(patsubst %, %.d/, $(_NONSO))
 
 
 $(_PAGEEXDIRS):

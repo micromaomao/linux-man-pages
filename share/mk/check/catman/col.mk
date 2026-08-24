@@ -3,17 +3,17 @@
 
 
 ifndef MAKEFILE_CHECK_CATMAN_COL_INCLUDED
-MAKEFILE_CHECK_CATMAN_COL_INCLUDED := 1
+MAKEFILE_CHECK_CATMAN_COL_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/catman/grotty.mk
 include $(MAKEFILEDIR)/configure/build-depends/bsdextrautils/col.mk
 
 
-ext := .cat.grep
+ext ::= .cat.grep
 
 
-_CHECK_catman_grep := $(patsubst %.cat, %$(ext), $(_CATMAN))
+_CHECK_catman_grep ::= $(patsubst %.cat, %$(ext), $(_CATMAN))
 
 
 $(_CHECK_catman_grep): %$(ext): %.cat $(MK) | $$(@D)/

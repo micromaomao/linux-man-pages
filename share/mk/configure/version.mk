@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_CONFIGURE_VERSION_INCLUDED
-MAKEFILE_CONFIGURE_VERSION_INCLUDED := 1
+MAKEFILE_CONFIGURE_VERSION_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
@@ -18,31 +18,31 @@ include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-projname      := man-pages
+projname      ::= man-pages
 ifndef VERSION
-VERSION       := $(shell $(GIT) describe --dirty | $(SED) 's/$(projname)-//')
+VERSION       ::= $(shell $(GIT) describe --dirty | $(SED) 's/$(projname)-//')
 endif
 ifndef EXTRAVERSION
-EXTRAVERSION  :=
+EXTRAVERSION  ::=
 endif
 
 
 ifndef DISTVERSION
-DISTVERSION   := $(VERSION)$(EXTRAVERSION)
+DISTVERSION   ::= $(VERSION)$(EXTRAVERSION)
 endif
 ifndef DISTNAME
-DISTNAME      := $(projname)-$(DISTVERSION)
+DISTNAME      ::= $(projname)-$(DISTVERSION)
 endif
 
 
-DISTFILESCMD := \
+DISTFILESCMD ::= \
 	$(FIND) $(srcdir) -not -type d \
 	| $(GREP) -v '^$(srcdir)/.git$$' \
 	| $(GREP) -v '^$(srcdir)/.git/' \
 	| $(GREP) -v '^$(srcdir)/.tmp/' \
 	| $(SORT)
 
-DISTDATECMD := \
+DISTDATECMD ::= \
 	$(ECHO) '$(DISTVERSION)' \
 	| if $(GREP) -- '-dirty$$' >/dev/null; then \
 		$(DISTFILESCMD) \
@@ -55,7 +55,7 @@ DISTDATECMD := \
 
 
 ifndef DISTDATE
-DISTDATE := $(shell $(DISTDATECMD))
+DISTDATE ::= $(shell $(DISTDATECMD))
 endif
 
 

@@ -3,13 +3,13 @@
 
 
 ifndef MAKEFILE_BUILD_INCLUDED
-MAKEFILE_BUILD_INCLUDED := 1
+MAKEFILE_BUILD_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 
 
-_MANDIR := $(builddir)/man
+_MANDIR ::= $(builddir)/man
 
 
 .PHONY: build-all

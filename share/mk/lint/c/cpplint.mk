@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_LINT_C_CPPLINT_INCLUDED
-MAKEFILE_LINT_C_CPPLINT_INCLUDED := 1
+MAKEFILE_LINT_C_CPPLINT_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/examples/src.mk
@@ -11,9 +11,9 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
 include $(MAKEFILEDIR)/configure/build-depends/cpplint/cpplint.mk
 
 
-ext := .lint-c.cpplint.touch
-tgts_EX := $(patsubst %, %$(ext), $(_EX_TU_src))
-tgts    := $(tgts_EX)
+ext ::= .lint-c.cpplint.touch
+tgts_EX ::= $(patsubst %, %$(ext), $(_EX_TU_src))
+tgts    ::= $(tgts_EX)
 
 
 $(tgts_EX): %$(ext): %

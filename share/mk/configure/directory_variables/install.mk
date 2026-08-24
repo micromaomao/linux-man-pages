@@ -3,38 +3,38 @@
 
 
 ifndef MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_INSTALL_INCLUDED
-MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_INSTALL_INCLUDED := 1
+MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_INSTALL_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
 ifndef DESTDIR
-DESTDIR     :=
+DESTDIR     ::=
 endif
 ifndef prefix
-prefix      := /usr/local
+prefix      ::= /usr/local
 endif
 ifndef exec_prefix
-exec_prefix := $(prefix)
+exec_prefix ::= $(prefix)
 endif
 ifndef datarootdir
-datarootdir := $(prefix)/share
+datarootdir ::= $(prefix)/share
 endif
 ifndef mandir
-mandir      := $(datarootdir)/man
+mandir      ::= $(datarootdir)/man
 endif
 ifndef docdir
-docdir      := $(datarootdir)/doc
+docdir      ::= $(datarootdir)/doc
 endif
 ifndef htmldir
-htmldir     := $(docdir)/html/man
+htmldir     ::= $(docdir)/html/man
 endif
 ifndef pdfdir
-pdfdir      := $(docdir)/pdf
+pdfdir      ::= $(docdir)/pdf
 endif
 ifndef bindir
-bindir      := $(exec_prefix)/bin
+bindir      ::= $(exec_prefix)/bin
 endif
 
 

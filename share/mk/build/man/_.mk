@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_MAN_INCLUDED
-MAKEFILE_BUILD_MAN_INCLUDED := 1
+MAKEFILE_BUILD_MAN_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -11,7 +11,7 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/src/man.mk
 
 
-_MANPAGES := $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(MANPAGES))
+_MANPAGES ::= $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(MANPAGES))
 
 
 .PHONY: build-man

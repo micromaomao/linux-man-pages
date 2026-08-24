@@ -3,13 +3,13 @@
 
 
 ifndef MAKEFILE_BUILD_FONTS_DOWNLOAD_INCLUDED
-MAKEFILE_BUILD_FONTS_DOWNLOAD_INCLUDED := 1
+MAKEFILE_BUILD_FONTS_DOWNLOAD_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/fonts/_.mk
 
 
-_DOWNLOAD := $(_FONTSDIR)/devpdf/download
+_DOWNLOAD ::= $(_FONTSDIR)/devpdf/download
 
 
 $(_DOWNLOAD): $(_FONTSDIR)/%: $(MAKEFILEDIR)/build/fonts/% $(MK) | $$(@D)/

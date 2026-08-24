@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_CPP_CPP_INCLUDED
-MAKEFILE_CONFIGURE_BUILD_DEPENDS_CPP_CPP_INCLUDED := 1
+MAKEFILE_CONFIGURE_BUILD_DEPENDS_CPP_CPP_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
@@ -14,11 +14,11 @@ include $(MAKEFILEDIR)/configure/verbose.mk
 
 
 ifndef CPP
-CPP := $(CC) $(CFLAGS_) -E
+CPP ::= $(CC) $(CFLAGS_) -E
 endif
 
 
-CPP_HAS_ALREADY_D_FORTIFY_SOURCE := \
+CPP_HAS_ALREADY_D_FORTIFY_SOURCE ::= \
 	$(shell \
 		$(CPP) -dM - -Wno-error </dev/null \
 		| $(GREP) ''\#'define _FORTIFY_SOURCE ' >/dev/null \
@@ -27,16 +27,16 @@ CPP_HAS_ALREADY_D_FORTIFY_SOURCE := \
 	)
 
 
-DEFAULT_CPPFLAGS := \
+DEFAULT_CPPFLAGS ::= \
 	$(shell $(PKGCONF_CMD) --cflags $(PKGCONF_LIBS) $(HIDE_ERR))
 ifeq ($(CPP_HAS_ALREADY_D_FORTIFY_SOURCE),no)
 DEFAULT_CPPFLAGS += -D_FORTIFY_SOURCE=2
 endif
 ifndef CPPFLAGS
-CPPFLAGS         :=
+CPPFLAGS         ::=
 endif
 ifndef CPPFLAGS_
-CPPFLAGS_        := $(DEFAULT_CPPFLAGS) $(CPPFLAGS)
+CPPFLAGS_        ::= $(DEFAULT_CPPFLAGS) $(CPPFLAGS)
 endif
 
 

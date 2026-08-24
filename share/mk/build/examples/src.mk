@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_EX_SRC_INCLUDED
-MAKEFILE_BUILD_EX_SRC_INCLUDED := 1
+MAKEFILE_BUILD_EX_SRC_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -17,7 +17,7 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/src/sortman.mk
 
 
-_EX_TU_src := \
+_EX_TU_src ::= \
 	$(patsubst $(MANDIR)/%, $(_MANDIR)/%, \
 		$(shell \
 			$(FIND) $(MANDIR)/* -type f \
@@ -29,8 +29,8 @@ _EX_TU_src := \
 			| $(SED) 's,:,\\:,g' \
 		) \
 	)
-_EX_TU_h := $(filter %.h, $(_EX_TU_src))
-_EX_TU_c := $(filter %.c, $(_EX_TU_src))
+_EX_TU_h ::= $(filter %.h, $(_EX_TU_src))
+_EX_TU_c ::= $(filter %.c, $(_EX_TU_src))
 
 
 $(_EX_TU_src): $$(patsubst %.d, %, $$(@D)) $(MK) | $$(@D)/

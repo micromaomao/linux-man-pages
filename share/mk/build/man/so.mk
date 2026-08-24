@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_MAN_SO_INCLUDED
-MAKEFILE_BUILD_MAN_SO_INCLUDED := 1
+MAKEFILE_BUILD_MAN_SO_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/src/man.mk
 
 
-_SO_MAN := $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(SO_MAN))
+_SO_MAN ::= $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(SO_MAN))
 
 
 $(_SO_MAN): $(_MANDIR)/%: $(MANDIR)/% $(MK) | $$(@D)/

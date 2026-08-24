@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_INSTALL_PDF_BOOK_INCLUDED
-MAKEFILE_INSTALL_PDF_BOOK_INCLUDED := 1
+MAKEFILE_INSTALL_PDF_BOOK_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/pdf/book/_.mk
@@ -11,11 +11,11 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
 include $(MAKEFILEDIR)/configure/directory_variables/install.mk
 
 
-_pdfdir := $(DESTDIR)$(pdfdir)
+_pdfdir ::= $(DESTDIR)$(pdfdir)
 
 
-_pdf_book    := $(patsubst $(_PDFDIR)/%, $(_pdfdir)/%, $(_PDF_BOOK))
-_pdf_book_rm := $(addsuffix -rm, $(wildcard $(_pdf_book)))
+_pdf_book    ::= $(patsubst $(_PDFDIR)/%, $(_pdfdir)/%, $(_PDF_BOOK))
+_pdf_book_rm ::= $(addsuffix -rm, $(wildcard $(_pdf_book)))
 
 
 $(_pdf_book): $(_pdfdir)/%: $(_PDFDIR)/% $(MK) | $$(@D)/

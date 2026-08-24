@@ -3,17 +3,17 @@
 
 
 ifndef MAKEFILE_BUILD_PRE_TBL_INCLUDED
-MAKEFILE_BUILD_PRE_TBL_INCLUDED := 1
+MAKEFILE_BUILD_PRE_TBL_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/pre/preconv.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/tbl.mk
 
 
-ext := .eqn
+ext ::= .eqn
 
 
-_MAN_eqn := $(patsubst %.tbl, %$(ext), $(_MAN_tbl))
+_MAN_eqn ::= $(patsubst %.tbl, %$(ext), $(_MAN_tbl))
 
 
 $(_MAN_eqn): %$(ext): %.tbl $(MK) | $$(@D)/

@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_HELP_LIST_INCLUDED
-MAKEFILE_HELP_LIST_INCLUDED := 1
+MAKEFILE_HELP_LIST_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/cut.mk
@@ -33,7 +33,7 @@ help-list-variables:
 	| $(XARGS) $(GREP) '^[^[:space:]].*=' \
 	| $(SED) 's,$(CURDIR)/,,' \
 	| $(SED) 's/=.*/=/' \
-	| $(GREP) -v -e ':DEFAULT_.*=' -e ':MAKEFILE_.*INCLUDED :=' \
+	| $(GREP) -v -e ':DEFAULT_.*=' -e ':MAKEFILE_.*INCLUDED ::=' \
 	| $(GREP) -v -f \
 		<( \
 			$(FIND) $(MAKEFILEDIR) -type f \

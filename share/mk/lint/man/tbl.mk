@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_LINT_MAN_TBL_INCLUDED
-MAKEFILE_LINT_MAN_TBL_INCLUDED := 1
+MAKEFILE_LINT_MAN_TBL_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/man/nonso.mk
@@ -15,8 +15,8 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 
 
-ext := .lint-man.tbl.touch
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+ext ::= .lint-man.tbl.touch
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 
 
 $(tgts): %$(ext): % $(MK) | $$(@D)/

@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_BUILD_PDF_PAGES_EQN_INCLUDED
-MAKEFILE_BUILD_PDF_PAGES_EQN_INCLUDED := 1
+MAKEFILE_BUILD_PDF_PAGES_EQN_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/pre/tbl.mk
@@ -11,10 +11,10 @@ include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
 
 
-ext := .pdf.troff
+ext ::= .pdf.troff
 
 
-_PDFMAN_troff := $(patsubst %.eqn, %$(ext), $(_MAN_eqn))
+_PDFMAN_troff ::= $(patsubst %.eqn, %$(ext), $(_MAN_eqn))
 
 
 $(_PDFMAN_troff): %$(ext): %.eqn $(MK) | $$(@D)/

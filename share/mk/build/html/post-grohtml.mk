@@ -3,17 +3,17 @@
 
 
 ifndef MAKEFILE_BUILD_HTML_POST_GROHTML_INCLUDED
-MAKEFILE_BUILD_HTML_POST_GROHTML_INCLUDED := 1
+MAKEFILE_BUILD_HTML_POST_GROHTML_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/html/troff.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff/post-grohtml.mk
 
 
-ext := .html
+ext ::= .html
 
 
-_HTMLMAN := $(patsubst %.html.set, %$(ext), $(_HTMLMAN_set))
+_HTMLMAN ::= $(patsubst %.html.set, %$(ext), $(_HTMLMAN_set))
 
 
 $(_HTMLMAN): %$(ext): %.html.set $(MK) | $$(@D)/

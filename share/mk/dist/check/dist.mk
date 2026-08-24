@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_DIST_CHECK_DIST_INCLUDED
-MAKEFILE_DIST_CHECK_DIST_INCLUDED := 1
+MAKEFILE_DIST_CHECK_DIST_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/configure/version.mk
@@ -11,7 +11,7 @@ include $(MAKEFILEDIR)/dist/check/_.mk
 include $(MAKEFILEDIR)/dist/check/tar.mk
 
 
-REDIST := $(_DISTCHECKBUILDDIR)/$(DISTNAME).tar
+REDIST ::= $(_DISTCHECKBUILDDIR)/$(DISTNAME).tar
 
 
 $(REDIST): $(_DISTCHECKSRCDIR) $(MK) | $$(@D)/

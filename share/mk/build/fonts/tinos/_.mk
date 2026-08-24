@@ -3,14 +3,14 @@
 
 
 ifndef MAKEFILE_BUILD_FONTS_TINOS_INCLUDED
-MAKEFILE_BUILD_FONTS_TINOS_INCLUDED := 1
+MAKEFILE_BUILD_FONTS_TINOS_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/fonts/tinos/pfa.mk
 include $(MAKEFILEDIR)/build/fonts/tinos/dit.mk
 
 
-_TINOS := $(_TINOS_PFA) $(_TINOSR)
+_TINOS ::= $(_TINOS_PFA) $(_TINOSR)
 
 
 .PHONY: build-fonts-tinos

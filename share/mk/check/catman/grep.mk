@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_CHECK_CATMAN_GREP_INCLUDED
-MAKEFILE_CHECK_CATMAN_GREP_INCLUDED := 1
+MAKEFILE_CHECK_CATMAN_GREP_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -13,16 +13,16 @@ include $(MAKEFILEDIR)/configure/build-depends/man/man.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .check-catman.touch
-xfail := $(MAKEFILEDIR)/check/catman/grep.xfail
+ext ::= .check-catman.touch
+xfail ::= $(MAKEFILEDIR)/check/catman/grep.xfail
 
-tgts := $(patsubst %.cat.grep, %$(ext), $(_CHECK_catman_grep))
+tgts ::= $(patsubst %.cat.grep, %$(ext), $(_CHECK_catman_grep))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
 endif
 
 
-_CHECK_catman := $(tgts)
+_CHECK_catman ::= $(tgts)
 
 
 $(_CHECK_catman): %.check-catman.touch: %.cat.grep $(MK) | $$(@D)/

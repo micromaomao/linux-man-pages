@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_LINT_C_CPPCHECK_INCLUDED
-MAKEFILE_LINT_C_CPPCHECK_INCLUDED := 1
+MAKEFILE_LINT_C_CPPCHECK_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -13,15 +13,15 @@ include $(MAKEFILEDIR)/configure/build-depends/cppcheck/cppcheck.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-ext := .lint-c.cppcheck.touch
-xfail := $(MAKEFILEDIR)/lint/c/cppcheck.xfail
+ext ::= .lint-c.cppcheck.touch
+xfail ::= $(MAKEFILEDIR)/lint/c/cppcheck.xfail
 
-tgts_EX := $(patsubst %, %$(ext), $(_EX_TU_src))
+tgts_EX ::= $(patsubst %, %$(ext), $(_EX_TU_src))
 ifeq ($(SKIP_XFAIL),yes)
-tgts_EX := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts_EX))
+tgts_EX ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts_EX))
 endif
 
-tgts := $(tgts_EX)
+tgts ::= $(tgts_EX)
 
 
 $(tgts_EX): %$(ext): %

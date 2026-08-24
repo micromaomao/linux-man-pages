@@ -3,7 +3,7 @@
 
 
 ifndef MAKEFILE_LINT_MAN_QUOTE_INCLUDED
-MAKEFILE_LINT_MAN_QUOTE_INCLUDED := 1
+MAKEFILE_LINT_MAN_QUOTE_INCLUDED ::= 1
 
 
 include $(MAKEFILEDIR)/build/man/nonso.mk
@@ -13,13 +13,13 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 
 
-ext := .lint-man.quote.touch
-xfail := $(MAKEFILEDIR)/lint/man/quote.xfail
-regexf := $(MAKEFILEDIR)/lint/man/quote.Pgrep
+ext ::= .lint-man.quote.touch
+xfail ::= $(MAKEFILEDIR)/lint/man/quote.xfail
+regexf ::= $(MAKEFILEDIR)/lint/man/quote.Pgrep
 
-tgts := $(patsubst %, %$(ext), $(_NONSO))
+tgts ::= $(patsubst %, %$(ext), $(_NONSO))
 ifeq ($(SKIP_XFAIL),yes)
-tgts := $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
+tgts ::= $(filter-out $(patsubst %, $(_MANDIR)/%$(ext), $(file < $(xfail))), $(tgts))
 endif
 
 
