@@ -9,15 +9,6 @@ tunables.conf \- tunables configuration file
 Tunables are a feature in the GNU C Library
 that allows application authors and distribution maintainers
 to alter the runtime library behavior to match their workload.
-For a list of supported tunables,
-please consult the glibc manual
-that corresponds to your installed version of glibc,
-or run the following command:
-.P
-.in +4n
-.EX
-ld.so \-\-list\-tunables
-.EE
 .P
 The file is parsed by
 .BR \%ldconfig (8)
@@ -34,6 +25,16 @@ or a filter.
 .SS Tunables
 A tunable is specified with a string of the form
 .IB name = value \f[R].\f[]
+.P
+For a list of supported tunables,
+please consult the glibc manual
+that corresponds to your installed version of glibc,
+or run the following command:
+.P
+.in +4n
+.EX
+.RB $ \~ld.so\~\-\-list\-tunables ;
+.EE
 .SS Directives
 .TP
 .BI include\~ path
