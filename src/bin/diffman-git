@@ -11,6 +11,12 @@ s='';
 u='-u';
 w='';
 
+err()
+{
+	>&2 echo "$(basename "$0"): error: $*";
+	exit 1;
+}
+
 while test $# -ge 1; do
 	case "$1" in
 	-s)
@@ -18,8 +24,7 @@ while test $# -ge 1; do
 		;;
 	-U)
 		if test $# -lt 2; then
-			>&2 echo "$(basename "$0"): -U: Missing argument.";
-			exit 1;
+			err "-U: Missing argument.";
 		fi;
 		u="-U$2";
 		shift;
@@ -34,8 +39,7 @@ while test $# -ge 1; do
 		break;
 		;;
 	-*)
-		>&2 echo "$(basename "$0"): $1: Unknown option.";
-		exit 1;
+		err "$1: Unknown option.";
 		;;
 	*)
 		break;
@@ -59,8 +63,7 @@ if test $# -ge 1 && test "$1" != '--'; then
 fi;
 if test $# -ge 1; then
 	if test "$1" != '--'; then
-		>&2 echo "$(basename "$0"): error: Too many arguments.";
-		exit 1;
+		err "Too many arguments.";
 	fi;
 	shift;
 fi;
