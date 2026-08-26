@@ -34,7 +34,7 @@ while test $# -ge 1; do
 		break;
 		;;
 	-*)
-		>&2 echo "$(basename "$0"): -U: Missing argument.";
+		>&2 echo "$(basename "$0"): $1: Unknown option.";
 		exit 1;
 		;;
 	*)
