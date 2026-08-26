@@ -64,10 +64,6 @@ if test $# -ge 1; then
 	fi;
 	shift;
 fi;
-if test $# -ge 1; then
-	>&2 echo "$(basename "$0"): error: Too many arguments.";
-	exit 1;
-fi;
 
 git rev-parse --show-toplevel | read -r dir;
 cd "$dir";
@@ -79,8 +75,8 @@ test -v MANROFFOPT          || export MANROFFOPT='-d AD=l';
 opts=($s $w $u);
 
 case $n in
-0)  git diff --name-only;			;;
-*)  git diff --name-only "$commit1..$commit2";	;;
+0)  git diff --name-only -- "$@";			;;
+*)  git diff --name-only "$commit1..$commit2" -- "$@";	;;
 esac \
 | grep -E '(\.[[:digit:]]([[:alpha:]][[:alnum:]]*)?\>|\.man)+(\.man|\.in)*$' \
 | sortman \

@@ -12,7 +12,8 @@ compare changes to manual pages line by line
 .RI [ diff-options \~.\|.\|.\&]
 .RI [[ base-commit ]
 .IR commit ]
-.RB [ \-\- ]
+.RB [ \-\-
+.RI [ path \~.\|.\|.\&]]
 .YS
 .SH DESCRIPTION
 The
@@ -34,6 +35,9 @@ If the
 .I base-commit
 is not specified,
 the comparison is done against the previous commit.
+.P
+.I path
+restricts the files that are compared.
 .SH OPTIONS
 .TP
 .B \-s
