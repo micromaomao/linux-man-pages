@@ -11,32 +11,54 @@ s='';
 u='-u';
 w='';
 
-while getopts "sU:w" opt; do
-	case "$opt" in
-	s)	s='-s';		;;
-	U)	u="-U$OPTARG";	;;
-	w)	w='-w';		;;
-	\?)	exit 1;		;;
-	*)	exit 1;		;;
+while test $# -ge 1; do
+	case "$1" in
+	-s)
+		s='-s';
+		;;
+	-U)
+		if test $# -lt 2; then
+			>&2 echo "$(basename "$0"): -U: Missing argument.";
+			exit 1;
+		fi;
+		u="-U$2";
+		shift;
+		;;
+	-U*)
+		u="$1";
+		;;
+	-w)
+		w='-w';
+		;;
+	--)
+		break;
+		;;
+	-*)
+		>&2 echo "$(basename "$0"): -U: Missing argument.";
+		exit 1;
+		;;
+	*)
+		break;
+		;;
 	esac;
+	shift;
 done;
-shift $((OPTIND-1));
 
 n=0;
-if test $# -ge 1 && test $1 != '--'; then
+if test $# -ge 1 && test "$1" != '--'; then
 	commit1="$1^";
 	commit2="$1";
 	n=1;
 	shift;
 fi;
-if test $# -ge 1 && test $1 != '--'; then
+if test $# -ge 1 && test "$1" != '--'; then
 	commit1="$commit2";
 	commit2="$1";
 	n=2;
 	shift;
 fi;
 if test $# -ge 1; then
-	if test $1 != '--'; then
+	if test "$1" != '--'; then
 		>&2 echo "$(basename "$0"): error: Too many arguments.";
 		exit 1;
 	fi;
