@@ -456,6 +456,35 @@ where one grants the right to truncate the file and the other does not.
 It is also possible to pass such file descriptors between processes,
 keeping their Landlock properties,
 even when these processes do not have an enforced Landlock ruleset.
+.SS Quiet rule flag
+Starting with the Landlock ABI version 10,
+it is possible to selectively suppress logs
+for specific denied accesses
+on a per-object basis with the
+.B LANDLOCK_ADD_RULE_QUIET
+flag of
+.BR landlock_add_rule (2),
+in combination with the
+.B quiet_access_fs
+and
+.B quiet_access_net
+fields
+of
+.IR \%struct\~landlock_ruleset_attr .
+It is also now possible to suppress logs
+for scope accesses via the
+.B quiet_scoped
+field of
+.IR \%struct\~landlock_ruleset_attr .
+The object is marked as quiet within a ruleset
+when at least one
+.BR landlock_add_rule (2)
+call is made for it with the
+.B LANDLOCK_ADD_RULE_QUIET
+flag,
+additional add-rule calls
+for the same object without this flag
+do not clear it.
 .SH VERSIONS
 Landlock was introduced in Linux 5.13.
 .P
@@ -500,6 +529,8 @@ _	_	_
 8	7.0	LANDLOCK_RESTRICT_SELF_TSYNC
 _	_	_
 9	7.1	LANDLOCK_ACCESS_FS_RESOLVE_UNIX
+_	_	_
+10	7.2	LANDLOCK_ADD_RULE_QUIET
 .TE
 .P
 Users should use the Landlock ABI version rather than the kernel version
@@ -610,6 +641,7 @@ __u64 landlock_fs_access_rights[] = {
     (LANDLOCK_ACCESS_FS_IOCTL_DEV    << 1) \- 1,  // v7: same
     (LANDLOCK_ACCESS_FS_IOCTL_DEV    << 1) \- 1,  // v8: same
     (LANDLOCK_ACCESS_FS_RESOLVE_UNIX << 1) \- 1,  // v9: add "resolve_unix"
+    (LANDLOCK_ACCESS_FS_RESOLVE_UNIX << 1) \- 1,  // v10: same
 };
 \&
 int abi = landlock_create_ruleset(NULL, 0,
@@ -622,7 +654,7 @@ if (abi == \-1) {
     perror("Unable to use Landlock");
     return;  /* Graceful fallback: Do nothing.  */
 }
-abi = MIN(abi, 9);
+abi = MIN(abi, 10);
 \&
 /* Only use the available rights in the ruleset.  */
 attr.handled_access_fs &= landlock_fs_access_rights[abi \- 1];

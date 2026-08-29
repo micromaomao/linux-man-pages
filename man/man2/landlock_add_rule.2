@@ -120,7 +120,47 @@ right means that requesting to bind on port 0 is allowed
 and it will automatically translate to binding on the related port range.
 .P
 .I flags
-must be 0.
+is a bit mask of the following optional flags:
+.TP
+.BR LANDLOCK_ADD_RULE_QUIET "  (since Landlock ABI version 10)"
+Together with the
+.IR quiet_ *
+fields in
+.IR \%struct\~landlock_ruleset_attr ,
+this flag controls whether Landlock will log audit messages when
+access to the objects covered by this rule is denied by this layer.
+.IP
+If logging is enabled,
+when Landlock denies an access,
+it will suppress the log if all of the following are true:
+.RS
+.IP \[bu] 3
+this layer is the innermost layer that denied the access;
+.IP \[bu]
+all accesses denied by this layer are part of the
+.IR quiet_ *
+fields in the related
+.IR \%struct\~landlock_ruleset_attr ;
+.IP \[bu]
+the object
+(or one of its parents, for filesystem rules)
+is marked as "quiet" via
+.BR LANDLOCK_ADD_RULE_QUIET .
+.RE
+.IP
+Because logging is only suppressed by a layer
+if the layer denies access,
+a sandboxed program cannot use this flag
+to "hide" access denials,
+without denying itself the access in the first place.
+.IP
+The effect of this flag does not depend on the value of
+.I allowed_access
+in the passed in
+.IR rule_attr .
+When this flag is present,
+the caller is also allowed to pass in an empty
+.IR allowed_access .
 .SH RETURN VALUE
 On success,
 .BR landlock_add_rule ()
@@ -159,7 +199,7 @@ was not a valid address.
 .TP
 .B EINVAL
 .I flags
-is not 0.
+is not valid.
 .TP
 .B EINVAL
 The rule accesses are inconsistent (i.e.,
@@ -181,10 +221,17 @@ In
 .IR \%struct\~landlock_net_port_attr ,
 the port number is greater than 65535.
 .TP
+.B EINVAL
+.B LANDLOCK_ADD_RULE_QUIET
+is passed
+but the ruleset has no quiet access bits set
+for the corresponding rule type.
+.TP
 .B ENOMSG
 Empty accesses (i.e.,
 .I rule_attr\->allowed_access
-is 0).
+is 0)
+and no flags.
 .TP
 .B EOPNOTSUPP
 Landlock is supported by the kernel but disabled at boot time.

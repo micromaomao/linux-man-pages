@@ -45,6 +45,9 @@ struct landlock_ruleset_attr {
     __u64 handled_access_fs;
     __u64 handled_access_net;
     __u64 scoped;
+    __u64 quiet_access_fs;
+    __u64 quiet_access_net;
+    __u64 quiet_scoped;
 };
 .EE
 .in
@@ -69,6 +72,17 @@ is a bitmask of scope flags
 .B Scope flags
 in
 .BR landlock (7)).
+.IP
+.I quiet_access_fs
+is a bit mask of filesystem actions which should not be logged
+if the per-object quiet flag is set.
+.IP
+.I quiet_access_net
+is a bit mask of network actions which should not be logged
+if the per-object quiet flag is set.
+.IP
+.I quiet_scoped
+is a bit mask of scoped actions which should not be logged.
 .IP
 This structure defines a set of
 .IR "handled access rights" ,
@@ -99,6 +113,41 @@ processes that use Landlock will
 .I handle
 a wide range or all access rights that they know about at build time
 (and that they have tested with a kernel that supported them all).
+.IP
+.I quiet_access_fs
+and
+.I quiet_access_net
+are bit masks of actions for which a denial by this layer
+will not trigger a log
+if the corresponding object
+(or its children, for filesystem rules)
+is marked with the "quiet" bit via
+.BR LANDLOCK_ADD_RULE_QUIET ,
+even if logging would normally take place per
+.BR landlock_restrict_self (2)
+flags.
+.I quiet_scoped
+is similar,
+except that it does not require marking any objects as quiet
+(if the ruleset is created with any bits set in
+.IR quiet_scoped ,
+then denial of such scoped resources will not trigger any log).
+These 3 fields are available since Landlock ABI version 10
+(see
+.B Quiet rule flag
+in
+.BR landlock (7)).
+.IP
+.IR quiet_access_fs ,
+.I quiet_access_net
+and
+.I quiet_scoped
+must be a subset of
+.IR handled_access_fs ,
+.I handled_access_net
+and
+.I scoped
+respectively.
 .IP
 This structure can grow in future Landlock versions.
 .P
@@ -203,6 +252,17 @@ in combination with
 .B LANDLOCK_CREATE_RULESET_VERSION
 or
 .BR LANDLOCK_CREATE_RULESET_ERRATA .
+.TP
+.B EINVAL
+.IR quiet_access_fs ,
+.IR quiet_access_net ,
+or
+.I quiet_scoped
+is not a subset of the corresponding
+.IR handled_access_fs ,
+.IR handled_access_net ,
+or
+.IR scoped .
 .TP
 .B ENOMSG
 Empty accesses (i.e.,
