@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 
 
 ifndef CC
-CC ::= gcc
+CC ::= cc
 endif
 
 
