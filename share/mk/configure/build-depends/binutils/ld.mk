@@ -16,7 +16,13 @@ include $(MAKEFILEDIR)/configure/verbose.mk
 
 
 ifndef LD
+ifeq ($(CC_VENDOR),gcc)
 LD ::= $(CC) $(CFLAGS_) $(CPPFLAGS_)
+else ifeq ($(CC_VENDOR),clang)
+LD ::= $(CC) $(CFLAGS_) $(CPPFLAGS_)
+else
+LD ::= ld
+endif
 endif
 
 
